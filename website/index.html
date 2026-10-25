@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipe Poli Racing</title>
+    <link rel="stylesheet" href="../website/css/style.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class='barraNavegacao'>
+
+            <img class='EPRimg' src="../website/media/inicial/Logotipo EPR futurista em preto e branco com laranja.png">
+
+            <div class='botoesHeader'>
+
+                <div class='botao'>
+                    Sobre <span class='seta'>></span>
+                </div>
+
+                <div class='botao'>
+                    Protótipos <span class='seta'>></span>
+                </div>
+
+                <div class='botao'>
+                    Patrocinadores <span class='seta'>></span>
+                </div>
+            </div>
+
+            <img class='iconCadastroLogin' src='../website/media/inicial/personIcon.webp'>
+        </div>
+    </nav>
+
+    <section class='corpoPrincipal'>
+
+        <div class='containerTexto'>
+            <span class='containerTextoTitulo'>FP-18</span>
+            <span class='containerTextoSubtitulo'>Inovação em Quatro Rodas</span>
+            <button class='containerTextoChamada' onclick='teste()'>Conheça Agora</button>
+        </div>
+
+        <div class='circulosFotos'>
+            <div class='circulos'></div>
+            <div class='circulos'></div>
+            <div class='circulos'></div>
+        </div>
+
+        <div class="barraScroll">
+            <div class="progressoScroll"></div>
+        </div>
+
+    </section>
+
+    <script>
+        window.addEventListener("scroll", () => {
+
+            const scrollTop = window.scrollY;
+
+            const alturaPagina =
+                document.documentElement.scrollHeight - window.innerHeight;
+
+            const porcentagem = (scrollTop / alturaPagina) * 100;
+
+            document.querySelector(".progressoScroll").style.height =
+                porcentagem + "%";
+        });
+    </script>
+
+</body>
+
+</html>
