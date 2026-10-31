@@ -140,6 +140,12 @@ function registrar() {
             alert('Falta um algarismo na sua senha.')
         } else if (temEspecial == false) {
             alert('Falta um caractere especial na sua senha.')
+        } else {
+            window.location.href = '../login/login.html'
         }
-    }
+    } 
+
+    
+
+
 }
