@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar-se</title>
+    <link rel="stylesheet" href="../assets/css/styleCadastro.css">
+</head>
+
+<body>
+
+    <div class='tela'>
+
+        <a href=''>
+            <div class='logo'>
+                <img src='../assets/media/inicial/layer-logo (1).png'>
+            </div>
+        </a>
+
+        <div class='painelEsquerdo'>
+
+            <div class='painelCadastro'>
+                <p class='informativoTopo'>
+                <p class='tituloInformativo'>REGISTRAR-SE NA EPR</p>
+                <br>
+                <p class='textoInformativo'>Já possui uma conta? Inicie sua sessão <b><a href="">aqui</a></b>.
+                </p>
+                <br>
+                <br>
+                <p><i>*Campos obrigatórios</i></p>
+                <p>
+
+                <div class='textoCadastro'>
+                    <p>Primeiro Nome*</p>
+                    <input class='camposCadastro' type='text' id='ipt_nomeUsuario'>
+
+                    <p>Sobrenome*</p>
+                    <input class='camposCadastro' type='text' id='ipt_sobrenomeUsuario'>
+
+                    <p>Membro da Equipe*</p>
+                    <select id='sel_membroEquipe' class='camposCadastro' onchange='mostrarCargo()'>
+                        <option value="n/a" selected disabled>Selecione uma Opção</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Nao">Não</option>
+                    </select>
+
+                    <div id='div_cargoEquipe'></div>
+
+                    <p>E-mail*</p>
+                    <input class='camposCadastro' type='email' id='ipt_emailUsuario'>
+
+                    <p>Senha*</p>
+                    <input class='camposCadastro' type='password' onkeyup='validarSenha()' id='ipt_senhaUsuario'>
+
+                    <div class='regrasSenhas'>
+                        <p class='regra' style="color: #595858;" id='tamanhoRegra'>x Conter 8 a 16 caracteres.</p>
+                        <p class='regra' style="color: #595858;" id='minusculaRegra'>x Pelo menos uma letra minúscula
+                            (a-z).</p>
+                        <p class='regra' style="color: #595858;" id='maiusculaRegra'>x Pelo menos uma letra maiúscula
+                            (A-Z).</p>
+                        <p class='regra' style="color: #595858;" id='numeroRegra'>x Pelo menos um algarismo (0-9).</p>
+                        <p class='regra' style="color: #595858;" id='especialRegra'>x Pelo menos um caractere especial
+                            do tipo: !@#$%&</p>
+                    </div>
+                </div>
+
+                <button class='botaoRegistrar' onclick='registrar()'>REGISTRAR</button>
+
+            </div>
+        </div>
+
+        <div class='painelDireito'></div>
+
+        <script src="../assets/js/cadastro.JS"></script>
+</body>
+
+</html>

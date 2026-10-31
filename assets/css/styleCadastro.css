@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tela {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.logo {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  z-index: 10;
+}
+
+.logo img {
+  height: 56px;
+  width: auto;
+  display: block;
+}
+
+.painelEsquerdo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 56px 28px;
+}
+
+.painelEsquerdo {
+    flex: 2 1 0;
+    min-width: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    padding: 16px 28px;
+}
+
+.painelDireito {
+    flex: 3 1 0;
+    min-width: 0;
+    height: 100vh;
+    background-image: 
+    linear-gradient(to right, #000 0%, transparent 35%),
+    url(../media/inicial/IMG-20250803-WA0102.jpg);
+    background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right center;  /* mostra o lado direito */
+}
+
+.painelCadastro {
+    margin: auto;
+    width: 100%;
+    max-width: 480px;
+    padding: 12px 13px 32px;
+    background-color: #e8eaf0;
+    /* sem min-height, o card cresce com o conteúdo */
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.camposCadastro {
+    width: 100%;
+    height: 52px;
+    padding: 0 16px;
+    font-size: 16px;
+    font-family: inherit;
+    border: 2px solid #727272;   /* ajuste o tom se quiser */
+    border-radius: 0;
+}
+
+.informativoTopo {
+    position: relative;
+}
+
+.tituloInformativo {
+    font-weight: 500;
+    font-size: 32px;
+}
+
+.textoInformativo {
+    font-size: 20px;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.textoCadastro {
+    margin-top: 28px;
+    color: #595858;
+}
+
+.textoCadastro p {
+    margin-top: 20px;    /* espaço entre um campo e o próximo */
+    margin-bottom: 4px;  /* texto colado no campo */
+}
+
+.camposCadastro {
+    width: 100%;
+    height: 52px;
+    padding: 0 16px;
+    border-style: solid;
+    font-size: 16px;
+    font-family: inherit;
+    border: 2px solid #2a3246;
+}
+
+.regrasSenhas {
+    margin: 4px;
+}
+
+.regra {
+    display: flex;
+    gap: 8px;
+    margin-top: 2px;
+    font-size: 14px;
+}
+
+.botaoRegistrar {
+    width: 100%;
+    height: 52px;
+    margin-top: 24px;
+    border: none;
+    border-radius: 0;
+    background-color: #000000;
+    color:  #ff8a00;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: inherit;
+    cursor: pointer;
+}
