@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sessão</title>
+    <link rel="stylesheet" href="../assets/css/styleLogin.css">
+</head>
+
+<body>
+
+    <div class='tela'>
+
+        <a href="../website/index.html">
+            <div class='logo'>
+                <img src='../assets/media/inicial/layer-logo (1).png'>
+            </div>
+        </a>
+
+        <div class='painelEsquerdo'>
+
+            <div class='painelLogin'>
+                <p class='informativoTopo'>
+                <p class='tituloInformativo'>INICIAR SESSÃO</p>
+                <br>
+                <p class='textoInformativo'>Ainda não tem uma conta EPR? Registre-se <b><a href="../cadastro/cadastro.html">aqui</a></b>.
+                </p>
+                <br>
+                <p>
+
+                <div class='textoLogin'>
+                    <p>E-mail</p>
+                    <input class='camposLogin' type='email' id='ipt_emailUsuario'>
+
+                    <p>Senha</p>
+                    <input class='camposLogin' type='password' id='ipt_senhaUsuario'>
+                </div>
+
+                <div id='msg'></div>
+
+                <button class='botaoAcessar' onclick='acessar()'>ACESSAR</button>
+
+            </div>
+        </div>
+
+        <div class='painelDireito'></div>
+
+        <script src="../assets/js/login.JS"></script>
+</body>
+
+</html>
