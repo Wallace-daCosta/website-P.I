@@ -5,12 +5,25 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.html {
+    scroll-behavior: smooth;
+}
+
+.navegacao {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
 .barraNavegacao {
-    background-color: #e66000;
+    background-color: rgb(230, 96, 0);
     width: 100%;
     height: 80px;
     display: flex;
     position: relative;
+    z-index: 2;
     justify-content: center;
     align-items: center;
 }
@@ -18,9 +31,11 @@
 .EPRimg {
     position: absolute;
     left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
     height: 40px;
     width: 120px;
-}
+}    
 
 .botoesHeader {
     display: flex;
@@ -39,18 +54,121 @@
     rotate: 90deg;
 }
 
-.iconCadastroLogin {
+.btnEntrar {
     position: absolute;
     right: 24px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.imgEntrar {
+    display: block;
     height: 35px;
     width: 50px;
 }
 
+.menuEntrar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 32px 24px;
+    background-color: #000;
+    background: linear-gradient(to bottom,rgba(230, 96, 0, 0.95) 0%, rgba(0, 0, 0, 0.85) 35%,rgba(0, 0, 0, 0.85) 100%);
+    transform: translateY(-100%);
+    visibility: hidden;
+    transition: transform 0.3s ease, visibility 0.3s;
+}
+
+.menuEntrar.aberta {
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.menuEntrar a {
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+.menuTitulo {
+    display: block;
+    font-size: 36px;
+    font-weight: bolder;
+    color: #fff;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+.menuTexto {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.botoesEntrar {
+    display: flex;
+    gap: 12px;
+}
+
+nav a {
+    color: #000;
+    text-decoration: none;
+}
+
+.botaoCadastro,
+.botaoLogin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    padding: 0 24px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.botaoCadastro {
+    background-color: #e66000;
+    color: #111;
+    border: 1px solid #111;
+}
+
+.botaoCadastro:hover {
+    background-color: #111;
+    color: #e66000;
+}
+
+.botaoLogin {
+    background-color: #111;
+    color: #fff;
+    border: 1px solid #111;
+}
+
+.botaoLogin:hover {
+    background-color: #fff;
+    color: #111;
+}
+
 .corpoPrincipal {
-    background-image: url("../media/inicial/EPRphoto1.png");
+    background-image: url("../media/inicial/IMG_20250803_153343.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: bottom center;
     min-height: 100vh;
+    padding-top: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,30 +181,35 @@
     align-items: center;
     align-content: center;
     border-style: inset;
-    height: 125px;
-    width: 325px;
+    height: 175px;
+    width: 415px;
     padding: 30px;
     margin: 45px;
-    background-color: rgba(117, 117, 117, 0.95);
+    background-color: RGB(00, 00, 00, 0.95);
 }
 
 .containerTextoTitulo {
     font-weight: bolder;
     font-size: 32px;
-    margin-bottom: 20px;
-    color: black;
+    margin-bottom: 4px;
+    color: #ff8a00;
 }
 
 .containerTextoSubtitulo {
     font-size: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     color: white;
 }
 
-.containerTextoChamada {
+.containerBotão {
     border-style: groove;
-    background-color: rgb(202, 202, 202);
+    background-color: #ff8a00;
     font-size: 16px;
+    height: 52px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 0;
+    width: 100px;
 }
 
 .circulosFotos {
@@ -105,7 +228,95 @@
     border-radius: 50%;
 }
 
-.barraScroll {
+.sobre {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.painelEsquerdoSobre {
+    width: 40%;
+    height: 500px;
+    background-color: #5a5a5a;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
+    margin-left: -25px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.tituloSobre {
+    display: flex;
+    margin-left: 275px;
+    margin-bottom: 30px;
+}
+
+.textoSobre {
+    background-color: #111;
+    color: #fff;
+    width: 96%;
+    height: 85%;
+    line-height: 1.4;
+}
+
+.painelInternoSobre {
+    background-color: #111;
+    padding: 14px;
+    width: 96%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.barraGuia {
+    height: 35px;
+    background-color: rgb(60, 59, 59, 0.85);
+    margin-top: auto;
+}
+
+.textoBarraGuia {
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.painelDireitoSobre {
+    width: 40%;
+    height: 500px;
+    background-color: #e66000;
+    border-bottom-right-radius: 12px;
+    border-top-right-radius: 12px;
+    margin-left: -25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.painelDireitoSobre::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        rgb(60, 59, 59) 0%,
+        transparent 40%
+    );
+    z-index: 1;
+}
+
+.painelDireitoSobre video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 40%;
+}
+
+/* .barraScroll {
     position: fixed;
     right: 20px;
     top: 50%;
@@ -121,4 +332,4 @@
     height: 30%;
     background-color: #e66000;
     border-radius: 10px;
-}
+} */

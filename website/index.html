@@ -10,36 +10,43 @@
 
 <body>
 
-    <nav>
+    <nav class='navegacao'>
         <div class='barraNavegacao'>
 
-            <img class='EPRimg' src="../assets/media/inicial/Logotipo EPR futurista em preto e branco com laranja.png">
+            <a href='../website/index.html'>
+                <div>
+                    <img class='EPRimg' src="../assets/media/inicial/layer-logo (1).png">
+                </div>
+            </a>
 
             <div class='botoesHeader'>
-
-                <div class='botao'>
-                    Sobre <span class='seta'>></span>
-                </div>
-
-                <div class='botao'>
-                    Protótipos <span class='seta'>></span>
-                </div>
-
-                <div class='botao'>
-                    Patrocinadores <span class='seta'>></span>
-                </div>
+                <a href='#sobre' class='botao'>Sobre <span class='seta'>></span></a>
+                <a class='botao'>FSAEB 2025 <span class='seta'>></span></a>
+                <a class='botao'>Minha Colaboração <span class='seta'>></span></a>
             </div>
 
-            <img class='iconCadastroLogin' src='../assets/media/inicial/personIcon.webp'>
+            <button class='btnEntrar' onclick='alternarMenu()'>
+                <img class='imgEntrar' src='../assets/media/inicial/personIcon.webp' alt='Entrar ou cadastrar'>
+            </button>
+        </div>
+
+        <div class='menuEntrar' id='menuEntrar'>
+            <p class='menuTitulo'>Bem-vindo à Equipe Poli Racing.</p>
+            <p class='menuTexto'>Registre-se e tenha acesso a áreas exclusivas</p>
+
+            <div class='menuBotoes'>
+                <a class='botaoLogin' href='../login/login.html'>Entrar</a>
+                <a class='botaoCadastro' href='../cadastro/cadastro.html'>Cadastrar</a>
+            </div>
         </div>
     </nav>
 
     <section class='corpoPrincipal'>
 
         <div class='containerTexto'>
-            <span class='containerTextoTitulo'>FP-18</span>
-            <span class='containerTextoSubtitulo'>Inovação em Quatro Rodas</span>
-            <button class='containerTextoChamada' onclick='teste()'>Conheça Agora</button>
+            <span class='containerTextoTitulo'>FP-16</span>
+            <span class='containerTextoSubtitulo'>Inovamos. Construimos. Competimos.</span>
+            <button class='containerBotão' onclick='teset()'>Conheça Agora</button>
         </div>
 
         <div class='circulosFotos'>
@@ -54,20 +61,49 @@
 
     </section>
 
-    <script>
-        window.addEventListener("scroll", () => {
+    <section class='sobre' id='sobre'>
 
-            const scrollTop = window.scrollY;
+        <div class='painelEsquerdoSobre'>
+            <h2 class='tituloSobre'>Sobre</h2>
 
-            const alturaPagina =
-                document.documentElement.scrollHeight - window.innerHeight;
+            <div class='painelInternoSobre'>
+                <p class='textoSobre'>A Equipe Poli Racing é um projeto multidisciplinar da Escola Politécnica da
+                    Universidade de São Paulo que participa da competição Formula SAE.
+                    <br>
+                    <br>
+                    Criada em 2008 a partir da iniciativa de alunos que tinham um sonho em comum: a construção de um carro de fórmula, a EPR tem transformado carreiras e experiências profissionais de diversos engenheiros da Escola Politécnica.
+                    Desde sua fundação, a Equipe tem participado anualmente da competição Fórmula SAE Brasil, ajudando no desenvolvimento profissional dos alunos e fornecendo momentos de grande aprendizado e valor na trajetória dos acadêmicos.
+                    Com grande rede de ex-membros e engenheiros formados bem posicionados no mercado, a EPR segue lapidando talentos e auxiliando diretamenta nas capacidades técnicas de seus membros, bem como o aprendizado do trabalho em equipe e valores profissionais no trabalho coletivo.
+                </p>
 
-            const porcentagem = (scrollTop / alturaPagina) * 100;
+                <div class='barraGuia'>
+                    <p class='textoBarraGuia'>FSAE BRASIL 2025 <span class='seta'>></span></p>
+                </div>
+            </div>
+        </div>
 
-            document.querySelector(".progressoScroll").style.height =
-                porcentagem + "%";
-        });
-    </script>
+        <div class='painelDireitoSobre'>
+            <video autoplay loop muted src='../assets/media/inicial/video_01.mp4'></video>
+        </div>
+
+        <section>
+
+        </section>
+
+        <script src="../assets/js/main.js">
+            // window.addEventListener("scroll", () => {
+
+            //     const scrollTop = window.scrollY;
+
+            //     const alturaPagina =
+            //         document.documentElement.scrollHeight - window.innerHeight;
+
+            //     const porcentagem = (scrollTop / alturaPagina) * 100;
+
+            //     document.querySelector(".progressoScroll").style.height =
+            //         porcentagem + "%";
+            // });
+        </script>
 
 </body>
 

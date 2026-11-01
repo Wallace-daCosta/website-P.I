@@ -51,8 +51,8 @@
     linear-gradient(to right, #000 0%, transparent 35%),
     url(../media/inicial/IMG-20250803-WA0102.jpg);
     background-size: cover;
-  background-repeat: no-repeat;
-  background-position: right center;  /* mostra o lado direito */
+    background-repeat: no-repeat;
+    background-position: right center;
 }
 
 .painelCadastro {
