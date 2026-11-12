@@ -49,10 +49,10 @@
     height: 100vh;
     background-image: 
     linear-gradient(to right, #000 0%, transparent 35%),
-    url(../media/inicial/IMG-20250803-WA0094\ \(1\).jpg);
+    url(../media/inicial/ceiaEmEmaus.jpg);
     background-size: cover;
   background-repeat: no-repeat;
-  background-position: right center;  /* mostra o lado direito */
+  background-position: right center;
 }
 
 .painelLogin {
@@ -61,7 +61,6 @@
     max-width: 480px;
     padding: 12px 13px 32px;
     background-color: #e8eaf0;
-    /* sem min-height, o card cresce com o conteúdo */
 }
 
 ::-webkit-scrollbar {
@@ -135,8 +134,8 @@ a:hover {
     margin-top: 24px;
     border: none;
     border-radius: 0;
-    background-color: #000000;
-    color:  #ff8a00;
+    background-color: #2B2724;
+    color:  #FAF6EE;
     font-size: 18px;
     font-weight: bold;
     font-family: inherit;
