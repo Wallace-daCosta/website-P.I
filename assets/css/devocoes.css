@@ -1,0 +1,321 @@
+/* ================= BASE ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ================= NAVEGAÇÃO ================= */
+.navegacao {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.barraNavegacao {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    background-color: #8C3B32;
+}
+
+.logoSite {
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 48px;
+    width: auto;
+    max-width: 40px;
+    object-fit: contain;
+    display: block;
+}
+
+.botoesHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+}
+
+.botoesHeader a.botao,
+.barraNavegacao a.botao,
+nav a.botao {
+    font-size: 16px !important;
+    font-weight: bolder !important;
+    color: #000 !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+    padding: 0;
+    margin: 0;
+}
+
+.btnEntrar {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgEntrar {
+    display: block;
+    height: 32px;
+    width: auto;
+    max-width: 48px;
+    object-fit: contain;
+}
+
+/* ================= MENU DROPDOWN ================= */
+.menuEntrar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 32px 24px;
+    background: linear-gradient(to bottom, rgba(140, 59, 50, 0.95) 0%, rgba(0, 0, 0, 0.85) 35%, rgba(0, 0, 0, 0.85) 100%);
+    transform: translateY(-100%);
+    visibility: hidden;
+    transition: transform 0.3s ease, visibility 0.3s;
+}
+
+.menuEntrar.aberta {
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.menuTitulo {
+    display: block;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    margin: 8px 0 4px;
+    letter-spacing: 0.5px;
+}
+
+.menuTexto {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.menuBotoes {
+    display: flex;
+    gap: 12px;
+}
+
+.botaoCadastro,
+.botaoLogin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    padding: 0 24px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.botaoCadastro {
+    background-color: #B8893B;
+    color: #111;
+    border: 1px solid #111;
+}
+
+.botaoCadastro:hover {
+    background-color: #1F3A5F;
+    color: #B8893B;
+}
+
+.botaoLogin {
+    background-color: #111;
+    color: #B8893B;
+    border: 1px solid #111;
+}
+
+.botaoLogin:hover {
+    background-color: #B8893B;
+    color: #1F3A5F;
+}
+
+/* ================= TIMELINE ================= */
+
+/* linha cinza vertical no centro da página */
+.timeline {
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background-color: #B9B9B9;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* os dois blocos (cores de fundo diferentes) */
+.containerSuperior,
+.containerInferior {
+    min-height: 100vh;
+    padding: 80px 0;
+    list-style: none;
+    position: relative;
+
+    /* grade: coluna esquerda | linha central | coluna direita */
+    display: grid;
+    grid-template-columns: 1fr 4px 1fr;
+    align-items: start;
+    align-content: start;
+}
+
+.containerSuperior {
+    background: linear-gradient(
+        to bottom,
+        #3F6190 0%,
+        #3F6190 83%,
+        #1F3A5F 98%,
+        #1F3A5F 100%
+    );
+}
+
+.containerInferior {
+    background-color: #1F3A5F;
+}
+
+/* ================= EVENTOS ================= */
+
+/* o <li> não vira caixa: só agrupa e define o lado do texto */
+.eventoEsquerda,
+.eventoDireita {
+    display: contents;
+}
+
+/* TEXTO: fica na coluna do próprio lado */
+.eventoEsquerda .eventoTopo {
+    grid-column: 1;
+    text-align: right;
+}
+
+.eventoDireita .eventoTopo {
+    grid-column: 3;
+    text-align: left;
+}
+
+/* IMAGEM: fica na coluna do lado OPOSTO, na mesma linha do texto */
+.eventoEsquerda .caixaImagem {
+    grid-column: 3;
+    margin-left: 16px;
+    margin-right: auto;
+}
+
+.eventoDireita .caixaImagem {
+    grid-column: 1;
+    margin-left: auto;
+    margin-right: 16px;
+}
+
+/* cada evento ocupa a linha indicada por --linha (1, 2, 3...) */
+.eventoTopo {
+    grid-row: var(--linha);
+    padding: 0 16px;
+    margin-bottom: 60px;
+}
+
+.caixaImagem {
+    grid-row: var(--linha);
+    margin-bottom: 60px;
+}
+
+/* ---------- título e ramo cinza ---------- */
+.eventoTopo h3 {
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+}
+
+.eventoTopo h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 300px;
+    height: 2px;
+    background-color: #B9B9B9;
+}
+
+.eventoEsquerda .eventoTopo h3::after {
+    right: -16px;   /* encosta o ramo na linha central */
+}
+
+.eventoDireita .eventoTopo h3::after {
+    left: -16px;
+}
+
+/* ---------- caixa de texto ---------- */
+.caixaTexto {
+    --cor-caixa: #FAF5EE;          /* troque a cor de fundo aqui */
+    background-color: var(--cor-caixa);
+    color: #111;
+    border: 2px solid #B8893B;
+    border-radius: 8px;
+    padding: 14px 16px;
+    max-width: 420px;
+    line-height: 1.4;
+}
+
+.eventoEsquerda .caixaTexto {
+    margin-left: auto;
+}
+
+.eventoDireita .caixaTexto {
+    margin-right: auto;
+}
+
+/* ---------- caixa da imagem ---------- */
+.caixaImagem {
+    width: 500px;
+    height: 650px;
+    max-width: calc(100% - 32px);
+    border: solid;
+    border-color: #B8893B;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.caixaImagem img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
