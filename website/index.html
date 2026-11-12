@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equipe Poli Racing</title>
+    <title>AMDG</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -15,14 +15,14 @@
 
             <a href='../website/index.html'>
                 <div>
-                    <img class='EPRimg' src="../assets/media/inicial/layer-logo (1).png">
+                    <img class='logoSite' src="../assets/media/inicial/logoOstensorio.png">
                 </div>
             </a>
 
             <div class='botoesHeader'>
-                <a href='#sobre' class='botao'>Sobre <span class='seta'>></span></a>
-                <a class='botao'>FSAEB 2025 <span class='seta'>></span></a>
-                <a class='botao'>Minha Colaboração <span class='seta'>></span></a>
+                <a href='../website/devocoes.html' class='botao'>Minhas Devoções</a>
+                <a href='../Dashboards/dashboardPessoal.html' class='botao'>Painel</a>
+                <a class='botao'>Ordem Dominicana</a>
             </div>
 
             <button class='btnEntrar' onclick='alternarMenu()'>
@@ -31,8 +31,8 @@
         </div>
 
         <div class='menuEntrar' id='menuEntrar'>
-            <p class='menuTitulo'>Bem-vindo à Equipe Poli Racing.</p>
-            <p class='menuTexto'>Registre-se e tenha acesso a áreas exclusivas</p>
+            <p class='menuTitulo'>Bem-vindo ao meu portal!</p>
+            <p class='menuTexto'>Registre-se e faça parte desta comunidade.</p>
 
             <div class='menuBotoes'>
                 <a class='botaoLogin' href='../login/login.html'>Entrar</a>
@@ -41,69 +41,149 @@
         </div>
     </nav>
 
-    <section class='corpoPrincipal'>
-
-        <div class='containerTexto'>
-            <span class='containerTextoTitulo'>FP-16</span>
-            <span class='containerTextoSubtitulo'>Inovamos. Construimos. Competimos.</span>
-            <button class='containerBotão' onclick='teset()'>Conheça Agora</button>
+    <section class='hero' id='hero'>
+        <div class='heroCaixa'>
+            <span class='heroTitulo'>Contemplata Aliis Tradere</span>
+            <span class='heroSubtitulo'>Minha Vida Católica</span>
+            <a href='#anseios' class='heroBotao'>Uma História de Conversão Diária</a>
         </div>
-
-        <div class='circulosFotos'>
-            <div class='circulos'></div>
-            <div class='circulos'></div>
-            <div class='circulos'></div>
-        </div>
-
-        <div class="barraScroll">
-            <div class="progressoScroll"></div>
-        </div>
-
     </section>
 
-    <section class='sobre' id='sobre'>
 
-        <div class='painelEsquerdoSobre'>
-            <h2 class='tituloSobre'>Sobre</h2>
+    <section class='secao secaoEscura' id='anseios'>
 
-            <div class='painelInternoSobre'>
-                <p class='textoSobre'>A Equipe Poli Racing é um projeto multidisciplinar da Escola Politécnica da
-                    Universidade de São Paulo que participa da competição Formula SAE.
+        <div class='painel painelEsquerdo painelCinza'>
+            <h2 class='painelTituloAnseios'>Anseios Iniciais</h2>
+
+            <div class='painelInternoAnseios'>
+                <p class='painelTextoAnseios'>
+                    Passados 21 anos de vida afastados da Igreja, pulando de crença em crença, de filosofia em
+                    filosofia, senti-me abraçado e convidado por Aquele quem é difícil recusar o chamado.
                     <br>
                     <br>
-                    Criada em 2008 a partir da iniciativa de alunos que tinham um sonho em comum: a construção de um carro de fórmula, a EPR tem transformado carreiras e experiências profissionais de diversos engenheiros da Escola Politécnica.
-                    Desde sua fundação, a Equipe tem participado anualmente da competição Fórmula SAE Brasil, ajudando no desenvolvimento profissional dos alunos e fornecendo momentos de grande aprendizado e valor na trajetória dos acadêmicos.
-                    Com grande rede de ex-membros e engenheiros formados bem posicionados no mercado, a EPR segue lapidando talentos e auxiliando diretamenta nas capacidades técnicas de seus membros, bem como o aprendizado do trabalho em equipe e valores profissionais no trabalho coletivo.
+                    Não foi imediato: a conversão levou tempo, foi gradual. Pequenos chamados foram dados com o tempo, e
+                    fui sendo vencido e amolecido pouco a pouco. De uma hora para outra, pareceu-me impossível recusar
+                    os planos de Deus em minha vida.
+                    <br>
+                    <br>
+                    Muitos erros foram cometidos para chegar até aqui: tive que quebrar a cara tantas e tantas vezes,
+                    alimentando minha alma de futilidade e falsidades para tapar vazios e buracos no meu coração.
                 </p>
 
-                <div class='barraGuia'>
-                    <p class='textoBarraGuia'>FSAE BRASIL 2025 <span class='seta'>></span></p>
+                <div class='barraGuiaEscura'>
+                    <a href='#primeirosContatos'>
+                        <p class='barraGuia-textoEscura'>Primeiros Contatos <span class='barraGuia-seta'>></span></p>
+                    </a>
                 </div>
             </div>
         </div>
 
-        <div class='painelDireitoSobre'>
-            <video autoplay loop muted src='../assets/media/inicial/video_01.mp4'></video>
+        <div class='painel painelDireito painelDegrade'>
+            <img class='painelMidia' src='../assets/media/inicial/anseiosIniciais.jpeg'>
         </div>
 
-        <section>
+    </section>
 
-        </section>
+    <section class='secao secaoClara' id='primeirosContatos'>
 
-        <script src="../assets/js/main.js">
-            // window.addEventListener("scroll", () => {
+        <div class='painel painelEsquerdo painelEscuro'>
+            <h2 class='painelTituloContatos'>Primeiros Contatos</h2>
 
-            //     const scrollTop = window.scrollY;
+            <div class='painelInternoContatos'>
+                <p class='painelTextoContatos'>
+                    Com um enorme fardo nos ombros, e uma infelicidade gigante no peito, a minha conversão se iniciou
+                    assim como de muitos outros: num dia que eu não esperava nada demais.<br><br>
+                    Convencido por minha (ex) namorada (que até então era atéia), decidi acompanhar ela e meus pais numa
+                    missa de 'cura e libertação', na paróquia São Pedro, em Interlagos.<br><br>
+                    Naquela missa em questão, recebemos intervenção do Espírito Santo, por meio do padre, num momento
+                    difícil para nós dois: ela quem havia pego alta semanas antes do hospital após um mês e meio de
+                    internação, e eu com uma pressão enorme no peito.
+                </p>
 
-            //     const alturaPagina =
-            //         document.documentElement.scrollHeight - window.innerHeight;
+                <div class='barraGuia'>
+                    <a href='#iniciacaoCatolica'>
+                        <p class='barraGuia-texto'>Iniciação Católica<span class='barraGuia-seta'> ></span></p>
+                    </a>
+                </div>
+            </div>
+        </div>
 
-            //     const porcentagem = (scrollTop / alturaPagina) * 100;
+        <div class='painel painelDireito'>
+            <img class='painelMidia' src='../assets/media/inicial/primeirosContatos.jpeg' alt='Entrar ou cadastrar'>
+        </div>
 
-            //     document.querySelector(".progressoScroll").style.height =
-            //         porcentagem + "%";
-            // });
-        </script>
+    </section>
+
+    <section class='secao secaoEscura secaoInvertida' id='iniciacaoCatolica'>
+
+        <div class='painel painelEsquerdo painelCinza'>
+            <h2 class='painelTituloIniciacao'>Iniciação Católica</h2>
+
+            <div class='painelInternoIniciacao'>
+                <p class='painelTextoIniciacao'>
+                    Em fevereiro de 2026, movido pela vontade de saber e beber mais da fonte do catolicismo, eu e meus pais
+                    começamos no Crisma na Fraternidade São João Paulo II, pelo Santuário Mãe dos Aflitos.
+                    <br>
+                    <br>
+                    Por sete meses, descobrimos mais sobre nossa Fé, aprendendo com o catecismo, as sagradas escrituras, com o magistério
+                    e pelas tradições. Dogmas, mandamentos, virtudes, boas práticas, devoções, orações, história e mistérios foram dia após dia
+                    elaborados e apresentados para nós. E eu queria sempre mais: aprender mais e viver mais dessa Fé.
+                    <br>
+                    <br>
+                    Vivenciamos diferentes experiências, aprendemos diversas coisas e nos aproximávamos cada vez mais do centro de nossa Fé:
+                    Jesus Cristo. Foi-nos apresentado um caminho difícil, e em breve teríamos de escolher se era isso que gostaríamos de viver.
+                </p>
+
+                <div class='barraGuiaEscura'>
+                    <a href='#maturidadeEspiritual'>
+                        <p class='barraGuia-textoEscura'>Maturidade Espiritual<span class='barraGuia-seta'> ></span></p>
+                    </a>
+                </div>  
+            </div>
+        </div>
+
+        <div class='painel painelDireito painelDegrade'>
+            <img class='painelMidia' src='../assets/media/inicial/iniciacaoCatolica.jpeg'>
+        </div>
+
+    </section>
+
+    <section class='secao secaoClara secaoInvertida' id='maturidadeEspiritual'>
+
+        <div class='painel painelEsquerdo painelEscuro'>
+            <h2 class='painelTituloMaturidade'>Maturidade Espiritual</h2>
+
+            <div class='painelInternoMaturidade'>
+                <p class='painelTextoMaturidade'>
+                        No dia 05/09/2026, fiz o meu Crisma: a confirmação da Fé, e o amadurecimento na fé e na espiritualidade. Deste ponto em diante, gosto sempre de lembrar
+                        da passagem Lucas 12:48: <i>'A quem muito é dado, muito será cobrado'</i>.
+                        <br>
+                        Passamos a vivenciar o Evangelho, espalhar o Evangelho e, se necessário, morrer pelo Evangelho, tornaram-se deveres para minha vida, 
+                        uma vez que aceitei seguir Cristo, com Cristo, por Cristo e em Cristo. Há, em todo esse processo, um amadurecimento da minha moralidade.
+                        <br>
+                        <br>
+                        Conhecer o Evangelho é enxergar a vida primeiro com os olhos espirituais, e depois
+                        o mundo físico. É almejar as coisas do alto, e entender que todo o mais vem por complemento. É ser sal da Terra e luz do mundo. E é também saber que meus pecados
+                        também contribuíram para a paixão de Cristo. É muito difícil esse caminho, mas pela efusão com o Espírito Santo, recebido no Crisma, temos força para seguir em frente
+                        e viver a perseverança dos Santos.
+                </p>
+
+                <div class='barraGuia'>
+                    <a href='#hero'>
+                        <p class='barraGuia-texto'>Explore Mais!</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class='painel painelDireito'>
+            <img class='painelMidia' src='../assets/media/inicial/maturidadeEspiritual.jpeg' alt='Entrar ou cadastrar'>
+        </div>
+
+    </section>
+
+
+    <script src="../assets/js/main.js"></script>
 
 </body>
 

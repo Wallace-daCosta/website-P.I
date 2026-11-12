@@ -5,7 +5,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.html {
+html {
     scroll-behavior: smooth;
 }
 
@@ -18,57 +18,71 @@
 }
 
 .barraNavegacao {
-    background-color: rgb(230, 96, 0);
-    width: 100%;
-    height: 80px;
-    display: flex;
     position: relative;
     z-index: 2;
+    display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 60px;
+    background-color: #8C3B32;
 }
 
-.EPRimg {
+.logoSite {
     position: absolute;
     left: 24px;
     top: 50%;
     transform: translateY(-50%);
-    height: 40px;
-    width: 120px;
-}    
+    height: 48px;
+    width: auto;
+    max-width: 40px;
+    object-fit: contain;
+    display: block;
+}
 
 .botoesHeader {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     gap: 45px;
-    align-items: baseline;
 }
 
-.botao {
+.botoesHeader a.botao,
+.barraNavegacao a.botao,
+nav a.botao {
+    font-size: 16px;
     font-weight: bolder;
-}
-
-.seta {
-    display: inline-block;
-    rotate: 90deg;
+    color: #000;
+    text-decoration: none;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
 }
 
 .btnEntrar {
     position: absolute;
     right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .imgEntrar {
     display: block;
-    height: 35px;
-    width: 50px;
+    height: 32px;
+    width: auto;
+    max-width: 48px;
+    object-fit: contain;
 }
 
+/* Menu dropdown */
 .menuEntrar {
     position: absolute;
     top: 100%;
@@ -80,8 +94,7 @@
     align-items: flex-start;
     gap: 16px;
     padding: 32px 24px;
-    background-color: #000;
-    background: linear-gradient(to bottom,rgba(230, 96, 0, 0.95) 0%, rgba(0, 0, 0, 0.85) 35%,rgba(0, 0, 0, 0.85) 100%);
+    background: linear-gradient(to bottom, rgba(140, 59, 50, 0.95) 0%, rgba(0, 0, 0, 0.85) 35%, rgba(0, 0, 0, 0.85) 100%);
     transform: translateY(-100%);
     visibility: hidden;
     transition: transform 0.3s ease, visibility 0.3s;
@@ -92,37 +105,26 @@
     visibility: visible;
 }
 
-.menuEntrar a {
-    font-weight: bolder;
-    text-decoration: none;
-}
-
 .menuTitulo {
     display: block;
     font-size: 36px;
-    font-weight: bolder;
+    font-weight: 700;
     color: #fff;
-    margin-top: 8px;
-    margin-bottom: 4px;
+    margin: 8px 0 4px;
     letter-spacing: 0.5px;
 }
 
 .menuTexto {
     display: block;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 700;
     color: #fff;
     margin-bottom: 12px;
 }
 
-.botoesEntrar {
+.menuBotoes {
     display: flex;
     gap: 12px;
-}
-
-nav a {
-    color: #000;
-    text-decoration: none;
 }
 
 .botaoCadastro,
@@ -133,7 +135,7 @@ nav a {
     height: 42px;
     padding: 0 24px;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 700;
     text-decoration: none;
     border-radius: 0;
     cursor: pointer;
@@ -141,195 +143,262 @@ nav a {
 }
 
 .botaoCadastro {
-    background-color: #e66000;
+    background-color: #B8893B;
     color: #111;
     border: 1px solid #111;
 }
 
 .botaoCadastro:hover {
-    background-color: #111;
-    color: #e66000;
+    background-color: #1F3A5F;
+    color: #B8893B;
 }
 
 .botaoLogin {
     background-color: #111;
-    color: #fff;
+    color: #B8893B;
     border: 1px solid #111;
 }
 
 .botaoLogin:hover {
-    background-color: #fff;
-    color: #111;
+    background-color: #B8893B;
+    color: #1F3A5F;
 }
-
-.corpoPrincipal {
-    background-image: url("../media/inicial/IMG_20250803_153343.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom center;
+ 
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     min-height: 100vh;
     padding-top: 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-image: url("../media/inicial/3840px-Rembrandt_Harmensz_van_Rijn_-_Return_of_the_Prodigal_Son_-_Google_Art_Project.jpg");
+    background-size: cover;
+    background-position: 100% 35%;
 }
-
-.containerTexto {
+ 
+.heroCaixa {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    align-content: center;
-    border-style: inset;
-    height: 175px;
-    width: 415px;
+    gap: 15px;
+    width: 550px;
+    min-height: 175px;
+    margin-top: 275px;
     padding: 30px;
-    margin: 45px;
-    background-color: RGB(00, 00, 00, 0.95);
+    border: 3px inset;
+    border-radius: 15px;
+    background-color: rgba(107, 122, 90, 0.95);
 }
-
-.containerTextoTitulo {
-    font-weight: bolder;
-    font-size: 32px;
+ 
+.heroTitulo {
     margin-bottom: 4px;
-    color: #ff8a00;
+    font-size: 32px;
+    font-weight: bolder;
+    color: #2B2724;
 }
-
-.containerTextoSubtitulo {
-    font-size: 20px;
+ 
+.heroSubtitulo {
     margin-bottom: 20px;
-    color: white;
+    font-size: 20px;
+    color: #fff;
+}
+ 
+.heroBotao {
+    padding: 8px;
+    border: unset;
+    background-color: #1F3A5F;
+    color: #B8893B;
+    border: inset;
+    font-size: small;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.containerBotão {
-    border-style: groove;
-    background-color: #ff8a00;
-    font-size: 16px;
-    height: 52px;
-    margin-top: 8px;
-    border: none;
-    border-radius: 0;
-    width: 100px;
+.heroBotao:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 100);
 }
-
-.circulosFotos {
+ 
+.secao {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    margin-top: auto;
-    margin-bottom: 20px;
-}
-
-.circulos {
-    width: 15px;
-    height: 15px;
-    background-color: rgba(255, 255, 255, 0.75);
-    border-radius: 50%;
-}
-
-.sobre {
     width: 100%;
     min-height: 100vh;
-    background-color: #111;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border-top: 4px solid #B8893B
 }
-
-.painelEsquerdoSobre {
+ 
+.secaoEscura {
+    background-color: #1F3A5F;
+    filter: brightness(0.95);
+}
+ 
+.secaoClara {
+    background-color: #FAF6EE;
+    filter: brightness(0.95);
+}
+ 
+.painel {
     width: 40%;
     height: 500px;
-    background-color: #5a5a5a;
-    border-bottom-left-radius: 12px;
-    border-top-left-radius: 12px;
     margin-left: -25px;
-    padding: 30px;
+}
+ 
+.painelEsquerdo {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    border-radius: 12px 0 0 12px;
 }
+ 
 
-.tituloSobre {
+.painelCinza {
+    padding: 30px;
+    background-color: #efe6d4;
+    align-items: center;
+}
+ 
+.painelEscuro {
+    padding: 30px;
+    background-color: #EFE6D4;
+    align-items: center;
+}
+ 
+.painelTituloAnseios,
+.painelTituloIniciacao {
     display: flex;
-    margin-left: 275px;
+    justify-content: center;
     margin-bottom: 30px;
+    color:#1F3A5F
 }
 
-.textoSobre {
-    background-color: #111;
-    color: #fff;
-    width: 96%;
-    height: 85%;
-    line-height: 1.4;
+.painelTituloContatos,
+.painelTituloMaturidade {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    color: #2B2724;
 }
-
-.painelInternoSobre {
-    background-color: #111;
-    padding: 14px;
-    width: 96%;
-    height: 85%;
+ 
+.painelInternoAnseios,
+.painelInternoIniciacao {
     display: flex;
     flex-direction: column;
+    width: 96%;
+    height: 85%;
+    padding: 14px;
+    border: #B8893B 3px;
+    border-style: solid;
+    background-color: #faf6ee;
     text-align: center;
 }
 
-.barraGuia {
-    height: 35px;
-    background-color: rgb(60, 59, 59, 0.85);
-    margin-top: auto;
+.painelInternoContatos,
+.painelInternoMaturidade {
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    height: 85%;
+    padding: 14px;
+    border: #1F3A5F 3px;
+    border-style: solid;
+    background-color: #fff;
+    color: #111;
+    text-align: center;
 }
-
-.textoBarraGuia {
+ 
+.painelEscuro .painelInterno {
+    padding: 14px 8px;
+}
+ 
+.painelInterno-titulo {
+    position: relative;
+    top: -10px;
     color: #fff;
-    padding: 10px;
-    font-weight: bold;
+}
+ 
+.painelTextoAnseios,
+.painelTextoIniciacao {
+    flex: 1;
+    margin-top: -12px;
+    padding: 8px;
+    color: #2B2724;
+    line-height: 1.3;
 }
 
-.painelDireitoSobre {
-    width: 40%;
-    height: 500px;
-    background-color: #e66000;
-    border-bottom-right-radius: 12px;
-    border-top-right-radius: 12px;
-    margin-left: -25px;
+.painelTextoContatos {
+    flex: 1;
+    margin-top: -12px;
+    padding: 8px;
+    color: #111;
+    line-height: 1.3;
+}
+ 
+.painelDireito {
     position: relative;
     overflow: hidden;
+    border-radius: 0 12px 12px 0;
 }
-
-.painelDireitoSobre::before {
+ 
+.painelDegrade::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to right,
-        rgb(60, 59, 59) 0%,
-        transparent 40%
-    );
     z-index: 1;
 }
-
-.painelDireitoSobre video {
+ 
+.painelMidia {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: 50% 40%;
 }
-
-/* .barraScroll {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 200px;
-    background-color: #ccc;
-    border-radius: 10px;
+ 
+.barraGuia {
+    height: 35px;
+    margin-top: auto;
+    background-color: #1F3A5F;
 }
 
-.progressoScroll {
-    width: 100%;
-    height: 30%;
-    background-color: #e66000;
-    border-radius: 10px;
-} */
+.barraGuiaEscura {
+    height: 35px;
+    margin-top: auto;
+    background-color: #B8893B;
+}
+
+.barraGuia a,
+.barraGuiaEscura a {
+    text-decoration: none;
+}
+ 
+.barraGuia-texto {
+    padding: 10px;
+    color: #FAF6EE;
+    font-weight: bold;
+}
+
+.barraGuia-textoEscura {
+    padding: 10px;
+    color: #2B2724;
+    font-weight: bold;
+}
+
+.barraGuia-textoEscura:hover {
+    filter: brightness(0.85);
+}
+
+.barraGuia-texto:hover {
+    filter: brightness(0.85);
+}
+
+.secaoInvertida {
+    flex-direction: row-reverse;
+}
+
+.secaoInvertida .painelEsquerdo {
+    border-radius: 0 12px 12px 0;
+}
+
+.secaoInvertida .painelDireito {
+    border-radius: 12px 0 0 12px;
+}
