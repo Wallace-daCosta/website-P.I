@@ -39,7 +39,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #000000;
+    background-color: #8c3b32;
     padding: 16px 28px;
 }
 
@@ -48,8 +48,8 @@
     min-width: 0;
     height: 100vh;
     background-image: 
-    linear-gradient(to right, #000 0%, transparent 35%),
-    url(../media/inicial/IMG-20250803-WA0102.jpg);
+    linear-gradient(to right, #8C3B32 0%, transparent 35%),
+    url(../media/inicial/SermonOnTheMountBloch.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: right center;
@@ -60,8 +60,7 @@
     width: 100%;
     max-width: 480px;
     padding: 12px 13px 32px;
-    background-color: #e8eaf0;
-    /* sem min-height, o card cresce com o conteúdo */
+    background-color: #EFE6D4;
 }
 
 ::-webkit-scrollbar {
@@ -71,7 +70,7 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.25);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -84,7 +83,7 @@
     padding: 0 16px;
     font-size: 16px;
     font-family: inherit;
-    border: 2px solid #727272;   /* ajuste o tom se quiser */
+    border: 2px solid #727272;
     border-radius: 0;
 }
 
@@ -115,8 +114,8 @@ a:hover {
 }
 
 .textoCadastro p {
-    margin-top: 20px;    /* espaço entre um campo e o próximo */
-    margin-bottom: 4px;  /* texto colado no campo */
+    margin-top: 20px;
+    margin-bottom: 4px;
 }
 
 .camposCadastro {
@@ -146,8 +145,8 @@ a:hover {
     margin-top: 24px;
     border: none;
     border-radius: 0;
-    background-color: #000000;
-    color:  #ff8a00;
+    background-color: #8c3b32;
+    color:  #EFE6D4;
     font-size: 18px;
     font-weight: bold;
     font-family: inherit;

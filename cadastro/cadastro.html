@@ -14,7 +14,7 @@
 
         <a href='../website/index.html'>
             <div class='logo'>
-                <img src='../assets/media/inicial/layer-logo (1).png'>
+                <img src='../assets/media/inicial/logoOstensorio.png'>
             </div>
         </a>
 
@@ -22,7 +22,7 @@
 
             <div class='painelCadastro'>
                 <p class='informativoTopo'>
-                <p class='tituloInformativo'>REGISTRAR-SE NA EPR</p>
+                <p class='tituloInformativo'>REGISTRAR-SE</p>
                 <br>
                 <p class='textoInformativo'>Já possui uma conta? Inicie sua sessão <b><a href='../login/login.html'>aqui</a></b>.
                 </p>
@@ -38,14 +38,14 @@
                     <p>Sobrenome*</p>
                     <input class='camposCadastro' type='text' id='ipt_sobrenomeUsuario'>
 
-                    <p>Membro da Equipe*</p>
-                    <select id='sel_membroEquipe' class='camposCadastro' onchange='mostrarCargo()'>
+                    <p>Santo de Devoção*</p>
+                    <select id='sel_santoEscolher' class='camposCadastro' onchange='mostrarSantos()'>
                         <option value="n/a" selected disabled>Selecione uma Opção</option>
                         <option value="Sim">Sim</option>
                         <option value="Nao">Não</option>
                     </select>
 
-                    <div id='div_cargoEquipe'></div>
+                    <div id='div_santosDisponiveis'></div>
 
                     <p>E-mail*</p>
                     <input class='camposCadastro' type='email' id='ipt_emailUsuario'>

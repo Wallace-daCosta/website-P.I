@@ -72,22 +72,26 @@ function validarSenha() {
 
 }
 
-function mostrarCargo() {
+function mostrarSantos() {
 
-    let membroEquipe = sel_membroEquipe.value
+    let santoEscolher = sel_santoEscolher.value
     
-    if (membroEquipe == 'Sim') {
-        div_cargoEquipe.innerHTML = `
-            <p>Cargo na Equipe*</p>
-            <select id='sel_cargoEquipe' class='camposCadastro'>
+    if (santoEscolher == 'Sim') {
+        div_santosDisponiveis.innerHTML = `
+            <p>Lista de Santos*</p>
+            <select id='sel_santosDisponiveis' class='camposCadastro'>
                 <option value="n/a" selected disabled>Selecione uma Opção</option>
-                <option value="Trainee">Trainee</option>
-                <option value="Projetista">Projetista</option>
-                <option value="Coordenador">Coordenador</option>
-                <option value="Capitao">Capitão</option>
+                <option value="Trainee">Virgem Maria</option>
+                <option value="Projetista">São José</option>
+                <option value="Coordenador">São Bento</option>
+                <option value="Capitao">São Miguel</option>
+                <option value="Capitao">São João Paulo II</option>
+                <option value="Capitao">São Tomás de Aquino</option>
+                <option value="Capitao">Santo Agostinho</option>
+                <option value="Capitao">Outros</option>                
             </select>`
     } else {
-        div_cargoEquipe.innerHTML = ''
+        div_santosDisponiveis.innerHTML = ''
     }
 }
 
@@ -113,9 +117,9 @@ function registrar() {
         } else if (membroEquipe == 'n/a') {
             alert('Escolha uma opção para membro da equipe')
             sel_membroEquipe.focus()
-        } else if (membroEquipe == 'Sim' && sel_cargoEquipe.value == 'n/a') {
+        } else if (membroEquipe == 'Sim' && sel_santosDisponiveis.value == 'n/a') {
             alert('Escolha o seu cargo na equipe')
-            sel_cargoEquipe.focus() 
+            sel_santosDisponiveis.focus() 
         } else if (emailUsuario.includes('@') && emailUsuario.includes('.')) {
             emailValido = true;
         } else {
