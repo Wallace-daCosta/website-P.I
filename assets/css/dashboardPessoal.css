@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.navegacao {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.barraNavegacao {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    background-color: #8C3B32;
+}
+
+.logoSite {
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 48px;
+    width: auto;
+    max-width: 40px;
+    object-fit: contain;
+    display: block;
+}
+
+.botoesHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+}
+
+.botoesHeader a.botao,
+.barraNavegacao a.botao,
+nav a.botao {
+    font-size: 16px !important;
+    font-weight: bolder !important;
+    color: #000 !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+    padding: 0;
+    margin: 0;
+}
+
+.btnEntrar {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgEntrar {
+    display: block;
+    height: 32px;
+    width: auto;
+    max-width: 48px;
+    object-fit: contain;
+}
+
+/* Menu dropdown */
+.menuEntrar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 32px 24px;
+    background: linear-gradient(to bottom, rgba(140, 59, 50, 0.95) 0%, rgba(0, 0, 0, 0.85) 35%, rgba(0, 0, 0, 0.85) 100%);
+    transform: translateY(-100%);
+    visibility: hidden;
+    transition: transform 0.3s ease, visibility 0.3s;
+}
+
+.menuEntrar.aberta {
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.menuTitulo {
+    display: block;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    margin: 8px 0 4px;
+    letter-spacing: 0.5px;
+}
+
+.menuTexto {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.menuBotoes {
+    display: flex;
+    gap: 12px;
+}
+
+.botaoCadastro,
+.botaoLogin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    padding: 0 24px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.botaoCadastro {
+    background-color: #B8893B;
+    color: #111;
+    border: 1px solid #111;
+}
+
+.botaoCadastro:hover {
+    background-color: #1F3A5F;
+    color: #B8893B;
+}
+
+.botaoLogin {
+    background-color: #111;
+    color: #B8893B;
+    border: 1px solid #111;
+}
+
+.botaoLogin:hover {
+    background-color: #B8893B;
+    color: #1F3A5F;
+}
+
+.dashboard {
+    min-height: 100vh;
+}
+
+.container {
+    min-height: 100vh;
+    padding: 80px 0;
+    position: relative;
+    background-color: #EFE6D4;
+}
+
+.tituloDashboard,
+.subtituloDashboard {
+    color: #2B2724;
+}
+
+.tituloDashboard {
+    display: flex;
+    justify-content: center;
+}
+
+.subtituloDashboard {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    margin-top: -15px;
+}
+
+.linha-dashboard {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.coluna {
+    display: flex;
+    flex-direction: column;
+    width: 49%;
+}
+
+.botaoAdicionar {
+    margin-bottom: 5px;
+    padding: 15px;
+    width: 190px;
+    color: #1F3A5F;
+    background-color: #B8893B;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.botaoAdicionar:hover {
+    filter: brightness(0.85);
+}
+
+.botao-esq {
+    align-self: flex-start;
+}
+.botao-dir {
+    align-self: flex-end;
+}
+
+.cardKPI,
+.cardGrafico {
+    width: 100%; 
+    background-color: #1F3A5F;
+}
+
+.cardKPI {
+    height: 100px;
+    margin-bottom: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-style: solid;
+    border-color: #B8893B;
+}
+
+.cardKPI h1 {
+    color: #B8893B;
+}
+
+.cardKPI h2 {
+    font-size: 18px;
+    color: #EFE6D4;
+}
+
+.cardKPI p {
+    color: #EFE6D4;
+}
+
+.cardGrafico {
+    height: 283px;
+    border-style: solid;
+    border-color: #B8893B;
+}

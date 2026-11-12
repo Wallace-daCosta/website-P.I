@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../assets/css/dashboardPublica.css">
+</head>
+
+<body>
+
+    <nav class='navegacao'>
+        <div class='barraNavegacao'>
+
+            <a href='../website/index.html'>
+                <div>
+                    <img class='logoSite' src="../assets/media/inicial/logoOstensorio.png">
+                </div>
+            </a>
+
+            <div class='botoesHeader'>
+                <a href='../website/devocoes.html' class='botao'>Minhas Devoções</a>
+                <a href='../Dashboards/dashboard.html' class='botao'>Painel</a>
+                <a class='botao'>Ordem Dominicana</a>
+            </div>
+
+            <button class='btnEntrar' onclick='alternarMenu()'>
+                <img class='imgEntrar' src='../assets/media/inicial/personIcon.webp' alt='Entrar ou cadastrar'>
+            </button>
+        </div>
+
+        <div class='menuEntrar' id='menuEntrar'>
+            <p class='menuTitulo'>Bem-vindo ao meu portal!</p>
+            <p class='menuTexto'>Registre-se e faça parte desta comunidade.</p>
+
+            <div class='menuBotoes'>
+                <a class='botaoLogin' href='../login/login.html'>Entrar</a>
+                <a class='botaoCadastro' href='../cadastro/cadastro.html'>Cadastrar</a>
+            </div>
+        </div>
+    </nav>
+
+<section class="dashboard">
+        <div class="painel">
+            <div class="container">
+                <h1 class='tituloDashboard'>Você me Conhece?</h1>
+                <br>
+                <h2 class='subtituloDashboard'>Um painel de interações</h2>
+                <br><br><br>
+
+                <div class="linha-dashboard">
+                    
+                    <div class="coluna">
+                        <button class="botaoAdicionar botao-esq">Formulário de Afinidade</button>
+                        <div class="cardKPI">
+                            <h2>NIVEL DE AFINIDADE MÉDIA</h2>
+                            <h1>75%</h1>
+                            <p>Pessoas acima dessa média: 12</p>
+                         </div>
+                        <div class="cardGrafico"></div>
+                    </div>
+
+                    <div class="coluna">
+                        <button class="botaoAdicionar botao-dir">Formulário de Devoção</button>
+                        <div class="cardKPI">
+                            <h2>SANTO MAIS COMUM</h2>
+                            <h1>Santo Tomás de Aquino</h1>
+                            <p>Total de votos e nomeações: 12</p>
+                        </div>
+                        <div class="cardGrafico"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
