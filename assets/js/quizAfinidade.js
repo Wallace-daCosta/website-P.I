@@ -10,6 +10,7 @@ function iniciarQuiz() {
     btnTentarNovamente.disabled = true
 }
 
+
 const listaDeQuestoes = [
 
         {

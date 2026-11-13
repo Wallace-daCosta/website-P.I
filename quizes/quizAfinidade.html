@@ -77,7 +77,7 @@
                 </div>
             </section>
 
-            <!-- COLUNA DIREITA -->
+            <!-- COLUNA CENTRAL -->
             <section id="areaPrincipal">
                 <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
@@ -138,6 +138,28 @@
                         </div>
                     </div>
 
+                </div>
+            </section>
+
+            <!-- COLUNA DIREITA -->
+            <section id="painelConfig">
+                <div id="cardConfig">
+                    <span class="configRotulo">Configurações</span>
+                </div>
+
+                <div id="seletorQuiz" class="flex-colunar">
+                    <span class="configRotulo">Quiz</span>
+                    <button id="btnQuizUm" class="botaoQuiz ativo" onclick='quiz1()'>Quiz 1</button>
+                    <button id="btnQuizDois" class="botaoQuiz" onclick='quiz2()'>Quiz 2</button>
+                    <button id="btnQuizTres" class="botaoQuiz" onclick='quiz3()'>Quiz 3</button>
+                    <button id="btnQuizTres" class="botaoQuiz" onclick='quiz4()'>Quiz 4</button>
+                </div>
+
+                <div id="seletorDificuldade" class="flex-colunar">
+                    <span class="configRotulo">Dificuldade</span>
+                    <button id="btnFacil" class="botaoDificuldade ativo">Fácil</button>
+                    <button id="btnMedio" class="botaoDificuldade">Médio</button>
+                    <button id="btnDificil" class="botaoDificuldade">Difícil</button>
                 </div>
             </section>
         </div>
