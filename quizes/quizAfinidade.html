@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Afinidade</title>
+    <link rel="stylesheet" href="../assets/css/quizAfinidade.css">
+    <script src="../assets/js/quizAfinidade.js"></script>
+</head>
+
+
+<body onload="onloadEsconder()">
+
+
+    <nav class='navegacao'>
+        <div class='barraNavegacao'>
+
+            <a href='../website/index.html'>
+                <div>
+                    <img class='logoSite' src="../assets/media/inicial/logoOstensorio.png">
+                </div>
+            </a>
+
+            <div class='botoesHeader'>
+                <a href='../website/devocoes.html' class='botao'>Minhas Devoções</a>
+                <a href='../Dashboards/dashboardPessoal.html' class='botao'>Painel</a>
+                <a href='../website/ordemDominicana.html' class='botao'>Ordem Dominicana</a>
+            </div>
+
+            <button class='btnEntrar' onclick='alternarMenu()'>
+                <img class='imgEntrar' src='../assets/media/inicial/personIcon.webp' alt='Entrar ou cadastrar'>
+            </button>
+        </div>
+
+        <div class='menuEntrar' id='menuEntrar'>
+            <p class='menuTitulo'>Bem-vindo ao meu portal!</p>
+            <p class='menuTexto'>Registre-se e faça parte desta comunidade.</p>
+
+            <div class='menuBotoes'>
+                <a class='botaoLogin' href='../login/login.html'>Entrar</a>
+                <a class='botaoCadastro' href='../cadastro/cadastro.html'>Cadastrar</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <div id="layoutQuiz">
+
+        <div id="fundoQuiz">
+
+            <!-- COLUNA ESQUERDA -->
+            <section id="painelLateral">
+                <a href="../website/index.html" class="logoHome" title="Voltar para a home">
+                    <img class="logoQuiz" src="../assets/media/inicial/logoOstensorio.png"
+                        alt="Logo - voltar para a home">
+                </a>
+
+                <p id="saudacao">
+                    Olá, <span id="nomeVisitante">visitante</span>.<br>
+                    Você realmente conhece o Wallace?
+                </p>
+
+                <div id="pontuacao" class="flex-colunar">
+                    <div class="contador contador-acertos">
+                        <span class="contadorRotulo">Acertos</span>
+                        <span id="spanCertas" class="contadorValor">0</span>
+                    </div>
+                    <div class="contador contador-erros">
+                        <span class="contadorRotulo">Erros</span>
+                        <span id="spanErradas" class="contadorValor">0</span>
+                    </div>
+                    <div class="contador contador-percentual">
+                        <span class="contadorRotulo">Aproveitamento</span>
+                        <span id="spanPercentual" class="contadorValor">0%</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COLUNA DIREITA -->
+            <section id="areaPrincipal">
+                <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+
+                <div id="jogo" class="flex-colunar">
+
+                    <!-- Caixa superior: questão -->
+                    <div id="caixaPergunta" class="caixa">
+                        <div id="infoQuestao">
+                            <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span
+                                    id="qtdQuestoes"></span>
+                                questões.</span>
+                        </div>
+                        <div id="perguntaDaQuestaoAtual">
+                            <span id="spanQuestaoExibida" class="text-bold"></span>
+                        </div>
+                    </div>
+
+                    <!-- Caixa inferior: alternativas e botões -->
+                    <div id="caixaOpcoes" class="caixa">
+                        <div id="infoAlternativas">
+                            <span><em>Escolha uma opção dentre as abaixo:</em></span>
+                        </div>
+
+                        <div id="opcoes" class="flex-colunar">
+                            <span>
+                                <input type="radio" id="primeiraOpcao" name="option" class="radio"
+                                    value="alternativaA" />
+                                <label for="primeiraOpcao" class="option" id="labelOpcaoUm">Oi</label>
+                            </span>
+                            <span>
+                                <input type="radio" id="segundaOpcao" name="option" class="radio"
+                                    value="alternativaB" />
+                                <label for="segundaOpcao" class="option" id="labelOpcaoDois">Olá</label>
+                            </span>
+                            <span>
+                                <input type="radio" id="terceiraOpcao" name="option" class="radio"
+                                    value="alternativaC" />
+                                <label for="terceiraOpcao" class="option" id="labelOpcaoTres">Opa</label>
+                            </span>
+                            <span>
+                                <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                                <label for="quartaOpcao" class="option" id="labelOpcaoQuatro">Ooo</label>
+                            </span>
+                        </div>
+
+                        <div id="botoes">
+                            <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
+                            <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
+                            <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar
+                                novamente</button>
+                        </div>
+
+                        <div id="pontuacaoFinalJogo" class="flex-colunar">
+                            <span id="pontuacaoFinal">Pontuação Final:
+                                <span id="spanPontuacaoFinal">***</span>
+                            </span>
+                            <span id="msgFinal">***</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+</body>
+
+</html>

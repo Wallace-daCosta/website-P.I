@@ -1,0 +1,392 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: whitesmoke;
+    color: black;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.navegacao {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.barraNavegacao {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    background-color: #8C3B32;
+    border-bottom: solid;
+    border-color: #B8893B;
+}
+
+.logoSite {
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 48px;
+    width: auto;
+    max-width: 40px;
+    object-fit: contain;
+    display: block;
+}
+
+.botoesHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+}
+
+.botoesHeader a.botao,
+.barraNavegacao a.botao,
+nav a.botao {
+    font-size: 16px;
+    font-weight: bolder;
+    color: #000;
+    text-decoration: none;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+}
+
+.btnEntrar {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgEntrar {
+    display: block;
+    height: 32px;
+    width: auto;
+    max-width: 48px;
+    object-fit: contain;
+}
+
+/* Menu dropdown */
+.menuEntrar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 32px 24px;
+    background: linear-gradient(to bottom, rgba(140, 59, 50, 0.95) 0%, rgba(0, 0, 0, 0.85) 35%, rgba(0, 0, 0, 0.85) 100%);
+    transform: translateY(-100%);
+    visibility: hidden;
+    transition: transform 0.3s ease, visibility 0.3s;
+}
+
+.menuEntrar.aberta {
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.menuTitulo {
+    display: block;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    margin: 8px 0 4px;
+    letter-spacing: 0.5px;
+}
+
+.menuTexto {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.menuBotoes {
+    display: flex;
+    gap: 12px;
+}
+
+.botaoCadastro,
+.botaoLogin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    padding: 0 24px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.botaoCadastro {
+    background-color: #B8893B;
+    color: #111;
+    border: 1px solid #111;
+}
+
+.botaoCadastro:hover {
+    background-color: #1F3A5F;
+    color: #B8893B;
+}
+
+.botaoLogin {
+    background-color: #111;
+    color: #B8893B;
+    border: 1px solid #111;
+}
+
+.botaoLogin:hover {
+    background-color: #B8893B;
+    color: #1F3A5F;
+}
+
+body {
+    background: whitesmoke;
+    color: black;
+}
+
+/* ===== Utilitários usados pelo JS ===== */
+.flex-colunar { display: flex; flex-direction: column; }
+.text-bold { font-weight: bold; }
+
+.text-success-with-bg { background: lightgreen; color: darkgreen; }
+.text-danger-with-bg  { background: lightcoral; color: darkred; }
+.text-warning-with-bg { background: khaki; color: darkgoldenrod; }
+.text-new-gray        { background: lightgray; }
+
+/* ===== Layout geral: 2 colunas, centralizado na tela ===== */
+#layoutQuiz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding: 90px 16px 24px;
+}
+
+#fundoQuiz {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) 3fr;
+    gap: 16px;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1100px;
+    padding: 20px;
+    background: antiquewhite;
+    border: 2px solid brown;
+    border-radius: 12px;
+}
+
+/* ===== Coluna esquerda ===== */
+#painelLateral {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.logoHome {
+    display: block;
+    align-self: center;
+    width: 100%;
+    max-width: 100px;
+}
+
+.logoQuiz {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform .2s;
+}
+
+.logoHome .logoSite {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform .2s;
+}
+
+.logoHome:hover .logoSite .logoQuiz { transform: scale(1.05); }
+
+#saudacao {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+#nomeVisitante { font-weight: bold; color: brown; }
+
+/* Contadores */
+#pontuacao {
+    gap: 12px;
+    margin-top: auto;
+}
+
+.contador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 10px 8px;
+    border: 2px solid black;
+    border-radius: 8px;
+    background: white;
+}
+
+.contadorRotulo {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.contadorValor { font-size: 1.6rem; font-weight: bold; }
+
+.contador-acertos { border-color: green; }
+.contador-acertos .contadorValor { color: green; }
+.contador-erros { border-color: red; }
+.contador-erros .contadorValor { color: red; }
+
+/* ===== Coluna direita ===== */
+#areaPrincipal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#btnIniciarQuiz {
+    align-self: center;
+    padding: 16px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    background: brown;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#btnIniciarQuiz:hover { filter: brightness(1.15); }
+
+#jogo {
+    display: none;   /* o JS exibe ao clicar em INICIAR QUIZ */
+    flex: 1;
+    gap: 16px;
+}
+
+.caixa {
+    padding: 16px 20px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+/* Caixa de cima (pergunta) */
+#caixaPergunta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 110px;
+    justify-content: center;
+}
+
+#infoQuestao { font-size: 0.85rem; opacity: .75; }
+#perguntaDaQuestaoAtual { font-size: 1.25rem; }
+
+/* Caixa de baixo (alternativas + botões) */
+#caixaOpcoes {
+    display: flex;
+    flex-direction: column;
+    flex: 1;         /* cresce até a base da sidebar */
+    gap: 14px;
+    min-height: 280px;
+}
+
+#opcoes { gap: 8px; }
+
+#opcoes > span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.option {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid gray;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .15s;
+}
+
+.option:hover { background: whitesmoke; }
+.radio { cursor: pointer; }
+.radio:disabled + .option { cursor: default; }
+
+#botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+}
+
+#botoes button {
+    flex: 1 1 180px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    color: white;
+    background: brown;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#botoes button:disabled {
+    background: darkgray;
+    cursor: not-allowed;
+}
+
+#pontuacaoFinalJogo {
+    gap: 4px;
+    padding-top: 10px;
+    border-top: 1px dashed gray;
+    font-size: 0.9rem;
+}
+
+#msgFinal { padding: 6px 8px; border-radius: 6px; }
