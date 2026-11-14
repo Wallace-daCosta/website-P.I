@@ -6,53 +6,124 @@
 comandos para mysql server
 */
 
-CREATE DATABASE aquatech;
+CREATE DATABASE IF NOT EXISTS projeto_catolico;
+USE projeto_catolico;
 
-USE aquatech;
-
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
-);
+-- =========================================================
+-- 1. BLOCO DE USUÁRIOS E DEVOÇÃO
+-- =========================================================
 
 CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+    primeiroNome VARCHAR(45) NOT NULL,
+    segundoNome VARCHAR(45) NOT NULL,
+    email VARCHAR(90) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    temDevocao TINYINT NOT NULL
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+CREATE TABLE santo (
+    idSanto INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(90) NOT NULL
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+CREATE TABLE devocao (
+    fkUsuario INT NOT NULL,
+    fkSanto INT NOT NULL,
+    PRIMARY KEY (fkUsuario, fkSanto),
+    CONSTRAINT fk_devocao_usuario FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
+    CONSTRAINT fk_devocao_santo FOREIGN KEY (fkSanto) REFERENCES santo(idSanto)
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
+-- =========================================================
+-- 2. BLOCO DE QUIZZES
+-- =========================================================
 
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	temperatura DECIMAL,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
+CREATE TABLE quiz (
+    idQuiz INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL,
+    ativo TINYINT NOT NULL DEFAULT 1
 );
 
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
+CREATE TABLE pergunta (
+    idPergunta INT PRIMARY KEY AUTO_INCREMENT,
+    enunciado VARCHAR(150) NOT NULL,
+    ativa TINYINT NOT NULL DEFAULT 1,
+    dificuldade VARCHAR(45) NOT NULL,
+    fkQuiz INT NOT NULL,
+    CONSTRAINT fk_pergunta_quiz FOREIGN KEY (fkQuiz) REFERENCES quiz(idQuiz)
+);
+
+CREATE TABLE opcao (
+    idOpcao INT PRIMARY KEY AUTO_INCREMENT,
+    texto VARCHAR(120) NOT NULL,
+    respostaCorreta TINYINT NULL, -- NULL no Quiz 3 (Santos)
+    fkPergunta INT NOT NULL,
+    fkSanto INT NULL,             -- NULL nos Quizzes 1 e 2
+    CONSTRAINT fk_opcao_pergunta FOREIGN KEY (fkPergunta) REFERENCES pergunta(idPergunta),
+    CONSTRAINT fk_opcao_santo FOREIGN KEY (fkSanto) REFERENCES santo(idSanto)
+);
+
+CREATE TABLE tentativa (
+    idTentativa INT PRIMARY KEY AUTO_INCREMENT,
+    dificuldade VARCHAR(45) NOT NULL,
+    dtTentativa DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fkUsuario INT NOT NULL,
+    fkQuiz INT NOT NULL,
+    CONSTRAINT fk_tentativa_usuario FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
+    CONSTRAINT fk_tentativa_quiz FOREIGN KEY (fkQuiz) REFERENCES quiz(idQuiz)
+);
+
+CREATE TABLE resposta (
+    idResposta INT PRIMARY KEY AUTO_INCREMENT,
+    dtResposta DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fkTentativa INT NOT NULL,
+    fkPergunta INT NOT NULL,
+    fkOpcao INT NOT NULL,
+    CONSTRAINT fk_resposta_tentativa FOREIGN KEY (fkTentativa) REFERENCES tentativa(idTentativa),
+    CONSTRAINT fk_resposta_pergunta FOREIGN KEY (fkPergunta) REFERENCES pergunta(idPergunta),
+    CONSTRAINT fk_resposta_opcao FOREIGN KEY (fkOpcao) REFERENCES opcao(idOpcao)
+);
+
+-- =========================================================
+-- 3. BLOCO DE MÚSICAS E CONFISSÕES (Lado Esquerdo do DER)
+-- =========================================================
+
+CREATE TABLE musicas (
+    idMusicas INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL,
+    categoria VARCHAR(45) NOT NULL,
+    
+    CONSTRAINT chkCategoria CHECK (categoria IN('secular', 'religiosa'))
+);
+
+CREATE TABLE escuta (
+    idEscuta INT PRIMARY KEY AUTO_INCREMENT,
+    dtEscuta DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fkMusica INT NOT NULL,
+    CONSTRAINT fk_escuta_musica FOREIGN KEY (fkMusica) REFERENCES musicas(idMusicas)
+);
+
+CREATE TABLE confissoes (
+    idConfissoes INT PRIMARY KEY AUTO_INCREMENT,
+    dtConfissao DATE NOT NULL
+);
+
+-- =========================================================
+-- INSERTS INICIAIS
+-- =========================================================
+
+INSERT INTO santo (nome) VALUES 
+('São Tomás de Aquino'),
+('São Miguel Arcanjo'),
+('Nossa Senhora'),
+('São João Paulo II'),
+('Santo Agostinho'),
+('São Bento'),
+('São José'),
+('Outros');
+
+INSERT INTO quiz (nome, ativo) VALUES 
+('Afinidade com Wallace', 1),
+('Conhecimentos Católicos', 1),
+('Qual Santo mais combina com você?', 1);
