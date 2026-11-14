@@ -1,0 +1,16 @@
+# Dependências
+node_modules/
+
+# Credenciais e configuração local
+.env
+.env.dev
+
+# Dados reais e dumps do banco
+*.dump
+backup*.sql
+dados-reais*.sql
+
+# Arquivos do sistema e do editor
+.DS_Store
+Thumbs.db
+.vscode/
