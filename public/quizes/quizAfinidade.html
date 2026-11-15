@@ -45,21 +45,51 @@
         </div>
     </nav>
 
-
-    <div id="layoutQuiz">
-
-        <div id="fundoQuiz">
-
+    <!-- BLOCO 1: VISITANTE (sem sessão ativa) -->
+    <div id="layoutVisitante">
+        <div class="fundoQuiz">
             <!-- COLUNA ESQUERDA -->
-            <section id="painelLateral">
+            <section class="painelLateral">
+                <a href="../website/index.html" class="logoHome" title="Voltar para a home">
+                    <img class="logoQuiz" src="../assets/media/inicial/logoOstensorio.png"
+                        alt="Logo - voltar para a home">
+                </a>
+                <p class="saudacao">
+                    Olá, <span class="nomeDestaque">visitante</span>.<br>
+                    Venha testar alguns conhecimentos!
+                </p>
+            </section>
+
+            <!-- COLUNA CENTRAL -->
+            <section class="areaPrincipal">
+                <h1 class='tituloVisitante'>Olá, visitante!</h1>
+                <h3 class='subtituloVisitante'>Seja bem-vindo!</h3>
+                <p class='textoVisitante'>
+                    Cadastre-se ou faça login em sua conta para poder ter acesso aos quizzes disponíveis!
+                </p>
+            </section>
+
+            <!-- COLUNA DIREITA -->
+            <section id="painelVisitante">
+                <a class='btnCadastrarVisitante' href='../cadastro/cadastro.html'>Cadastrar-se</a>
+                <a class='btnLoginVisitante' href='../login/login.html'>Fazer Login</a>
+            </section>
+        </div>
+    </div>
+
+    <!-- BLOCO 2: USUÁRIO LOGADO -->
+    <div id="layoutQuiz" hidden>
+        <div class="fundoQuiz">
+            <!-- COLUNA ESQUERDA -->
+            <section class="painelLateral">
                 <a href="../website/index.html" class="logoHome" title="Voltar para a home">
                     <img class="logoQuiz" src="../assets/media/inicial/logoOstensorio.png"
                         alt="Logo - voltar para a home">
                 </a>
 
-                <p id="saudacao">
-                    Olá, <span id="nomeVisitante">visitante</span>.<br>
-                    Você realmente conhece o Wallace?
+                <p class="saudacao">
+                    Olá, <span id="nomeVisitante" class="nomeDestaque">visitante</span>.<br>
+                    Teste alguns conhecimentos!
                 </p>
 
                 <div id="pontuacao" class="flex-colunar">
@@ -79,11 +109,10 @@
             </section>
 
             <!-- COLUNA CENTRAL -->
-            <section id="areaPrincipal">
+            <section class="areaPrincipal">
                 <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
                 <div id="jogo" class="flex-colunar">
-
                     <!-- Caixa superior: questão -->
                     <div id="caixaPergunta" class="caixa">
                         <div id="infoQuestao">
@@ -138,7 +167,14 @@
                             <span id="msgFinal">***</span>
                         </div>
                     </div>
+                </div>
 
+                <!-- Card de resultado do Quiz 3 (Santos) -->
+                <div id="cardResultado">
+                    <img id="imgSanto" src="" alt="Santo compatível">
+                    <h2 id="tituloSanto">Santo</h2>
+                    <p id="textoSanto">Texto sobre o porquê deste santo.</p>
+                    <button id="btnVoltarMenu" onclick="voltarAoMenuInicial()">Voltar ao menu inicial</button>
                 </div>
             </section>
 
@@ -149,18 +185,20 @@
                 </div>
 
                 <div id="seletorQuiz" class="flex-colunar">
-                    <span class="configRotulo">Quiz</span>
-                    <button id="btnQuizUm" class="botaoQuiz ativo" onclick='quiz1()'>Quiz 1</button>
-                    <button id="btnQuizDois" class="botaoQuiz" onclick='quiz2()'>Quiz 2</button>
-                    <button id="btnQuizTres" class="botaoQuiz" onclick='quiz3()'>Quiz 3</button>
-                    <button id="btnQuizTres" class="botaoQuiz" onclick='quiz4()'>Quiz 4</button>
+                    <span class="configRotulo">Quizzes</span>
+                    <button id="btnQuizUm" class="botaoQuiz ativo" onclick="selecionarQuiz(1)">Afinidade com
+                        Wallace</button>
+                    <button id="btnQuizDois" class="botaoQuiz" onclick="selecionarQuiz(2)">Fé Católica</button>
+                    <button id="btnQuizTres" class="botaoQuiz" onclick="selecionarQuiz(3)">Santos</button>
                 </div>
 
                 <div id="seletorDificuldade" class="flex-colunar">
-                    <span class="configRotulo">Dificuldade</span>
-                    <button id="btnFacil" class="botaoDificuldade ativo">Fácil</button>
-                    <button id="btnMedio" class="botaoDificuldade">Médio</button>
-                    <button id="btnDificil" class="botaoDificuldade">Difícil</button>
+                    <button id="btnFacil" class="botaoDificuldade ativo"
+                        onclick="selecionarDificuldade('facil')">Fácil</button>
+                    <button id="btnMedio" class="botaoDificuldade"
+                        onclick="selecionarDificuldade('medio')">Médio</button>
+                    <button id="btnDificil" class="botaoDificuldade"
+                        onclick="selecionarDificuldade('dificil')">Difícil</button>
                 </div>
             </section>
         </div>
