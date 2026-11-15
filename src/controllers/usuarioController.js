@@ -88,8 +88,8 @@ function cadastrar(req, res) {
         res.status(400).send("Sua seleção de devoção deve ser 0 ou 1!");
     } else if (temDevocao == 1 && santos.length != 3) {
         res.status(400).send("Você deve escolher exatamente 3 santos de devoção!");
-    } else if (temDevocao == 1 && (santos[0] == santos[1] || santos[0] == santos[2] || santos[1] == santos[2])) {
-        res.status(400).send("Os 3 santos de devoção devem ser diferentes entre si!");
+    } else if (temDevocao == 1 && ((santos[0] == santos[1] && santos[0] != 8) || (santos[0] == santos[2]  && santos[0] != 8) || (santos[1] == santos[2] && santos[1] != 8))) {
+        res.status(400).send("Os 3 santos de devoção devem ser diferentes entre si, com exceção de 'outros'");
     } else if (!email.includes('@') || !email.includes('.')) {
         res.status(400).send("Seu email está incorreto. Precisa ter @ e .");
     } else if (senha.length < 8 || senha.length > 16) {
