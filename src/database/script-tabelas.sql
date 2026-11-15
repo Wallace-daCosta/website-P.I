@@ -28,9 +28,10 @@ CREATE TABLE santo (
 );
 
 CREATE TABLE devocao (
+    idDevocao INT NOT NULL AUTO_INCREMENT,
     fkUsuario INT NOT NULL,
     fkSanto INT NOT NULL,
-    PRIMARY KEY (fkUsuario, fkSanto),
+    PRIMARY KEY (idDevocao),
     CONSTRAINT fk_devocao_usuario FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
     CONSTRAINT fk_devocao_santo FOREIGN KEY (fkSanto) REFERENCES santo(idSanto)
 );
