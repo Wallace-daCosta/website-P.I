@@ -1,7 +1,7 @@
 {
-  "name": "web-data-viz",
+  "name": "projeto-católico",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projeto pessoal e individual desenvolvido para conclusão do primeiro semestre na São Paulo Tech School (SPTech)",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
