@@ -5,6 +5,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 body {
     margin: 0;
     background: whitesmoke;
@@ -15,6 +19,7 @@ html {
     scroll-behavior: smooth;
 }
 
+/* ===== Navbar ===== */
 .navegacao {
     position: fixed;
     top: 0;
@@ -172,11 +177,6 @@ nav a.botao {
     color: #1F3A5F;
 }
 
-body {
-    background: whitesmoke;
-    color: black;
-}
-
 /* ===== Utilitários usados pelo JS ===== */
 .flex-colunar { display: flex; flex-direction: column; }
 .text-bold { font-weight: bold; }
@@ -187,6 +187,7 @@ body {
 .text-new-gray        { background: lightgray; }
 
 /* ===== Layout geral: 3 colunas, centralizado na tela ===== */
+#layoutVisitante,
 #layoutQuiz {
     display: flex;
     justify-content: center;
@@ -196,7 +197,7 @@ body {
     padding: 90px 16px 24px;
 }
 
-#fundoQuiz {
+.fundoQuiz {
     display: grid;
     grid-template-columns: minmax(220px, 1fr) 3fr minmax(220px, 1fr);
     gap: 16px;
@@ -210,9 +211,10 @@ body {
     border-radius: 12px;
 }
 
-/* ===== Coluna esquerda ===== */
-#painelLateral,
-#painelConfig {
+/* ===== Coluna esquerda e direita ===== */
+.painelLateral,
+#painelConfig,
+#painelVisitante {
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -236,23 +238,16 @@ body {
     transition: transform .2s;
 }
 
-.logoHome .logoSite {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform .2s;
-}
+.logoHome:hover .logoQuiz { transform: scale(1.05); }
 
-.logoHome:hover .logoSite .logoQuiz { transform: scale(1.05); }
-
-#saudacao {
+.saudacao {
     margin: 0;
     font-size: 0.95rem;
     line-height: 1.4;
     text-align: center;
 }
 
-#nomeVisitante { font-weight: bold; color: brown; }
+.nomeDestaque { font-weight: bold; color: brown; }
 
 /* Contadores */
 #pontuacao {
@@ -287,12 +282,54 @@ body {
 .contador-erros .contadorValor { color: red; }
 
 /* ===== Coluna central ===== */
-#areaPrincipal {
+.areaPrincipal {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
+/* ===== Tela de visitante ===== */
+.tituloVisitante,
+.subtituloVisitante {
+    display: flex;
+    justify-content: center;
+    padding-top: 3px;
+}
+
+.textoVisitante {
+    text-align: center;
+    padding-top: 15px;
+    margin-top: 36px;
+}
+
+#painelVisitante {
+    justify-content: center;
+}
+
+.btnCadastrarVisitante,
+.btnLoginVisitante {
+    display: flex;
+    justify-content: center;
+    border: solid 2px #000;
+    padding: 18px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btnLoginVisitante {
+    color: #B8893B;
+    background-color: #1F3A5F;
+    margin-top: 10px;
+}
+
+.btnCadastrarVisitante {
+    color: #1F3A5F;
+    background-color: #B8893B;
+    margin-bottom: 10px;
+}
+
+/* ===== Jogo e botões do Quiz ===== */
 #btnIniciarQuiz {
     align-self: center;
     padding: 16px 40px;
@@ -308,7 +345,7 @@ body {
 #btnIniciarQuiz:hover { filter: brightness(1.15); }
 
 #jogo {
-    display: none;   /* o JS exibe ao clicar em INICIAR QUIZ */
+    display: none;
     flex: 1;
     gap: 16px;
 }
@@ -336,7 +373,7 @@ body {
 #caixaOpcoes {
     display: flex;
     flex-direction: column;
-    flex: 1;         /* cresce até a base da sidebar */
+    flex: 1;
     gap: 14px;
     min-height: 280px;
 }
@@ -394,11 +431,11 @@ body {
 
 #msgFinal { padding: 6px 8px; border-radius: 6px; }
 
-/* ===== Coluna direita ===== */
+/* ===== Coluna direita (Configurações) ===== */
 #seletorQuiz,
 #seletorDificuldade { gap: 8px; }
 
-#seletorDificuldade { margin-top: auto; }
+#seletorDificuldade { margin-top: 40px; }
 
 .botaoQuiz,
 .botaoDificuldade {
@@ -431,3 +468,50 @@ body {
     background: brown;
     border-color: brown;
 }
+
+/* ===== Card de resultado do Quiz 3 (Santos) ===== */
+#cardResultado {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 24px 20px;
+    text-align: center;
+    background: white;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+#imgSanto {
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    object-fit: cover;
+    border: 2px solid brown;
+    border-radius: 8px;
+    background: whitesmoke;
+}
+
+#tituloSanto {
+    font-size: 1.5rem;
+    color: brown;
+}
+
+#textoSanto {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+#btnVoltarMenu {
+    padding: 10px 24px;
+    font-size: 0.95rem;
+    color: white;
+    background: brown;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#btnVoltarMenu:hover { filter: brightness(1.15); }
