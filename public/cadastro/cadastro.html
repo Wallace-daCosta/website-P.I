@@ -41,13 +41,13 @@
                     <input class='camposCadastro' type='text' id='ipt_sobrenomeUsuario'>
 
                     <p>Santo de Devoção*</p>
-                    <select id='sel_santoEscolher' class='camposCadastro' onchange='mostrarSantos()'>
+                    <select id='sel_temDevocao' class='camposCadastro' onchange='mostrarSantos()'>
                         <option value="n/a" selected disabled>Selecione uma Opção</option>
-                        <option value="Sim">Sim</option>
-                        <option value="Nao">Não</option>
+                        <option value=1>Sim</option>
+                        <option value=0>Não</option>
                     </select>
 
-                    <div id='div_santosDisponiveis'></div>
+                    <div id='div_santosExibir'></div>
 
                     <p>E-mail*</p>
                     <input class='camposCadastro' type='email' id='ipt_emailUsuario'>
