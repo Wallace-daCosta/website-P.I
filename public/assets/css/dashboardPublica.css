@@ -5,6 +5,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -164,6 +168,113 @@ nav a.botao {
 .botaoLogin:hover {
     background-color: #B8893B;
     color: #1F3A5F;
+}
+
+#layoutVisitante,
+#layoutQuiz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding: 90px 16px 24px;
+}
+
+.fundoQuiz {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) 3fr minmax(220px, 1fr);
+    gap: 16px;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1100px;
+    padding: 20px;
+    background: antiquewhite;
+    border: 2px solid brown;
+    border-radius: 12px;
+}
+
+.painelLateral,
+#painelConfig,
+#painelVisitante {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.logoHome {
+    display: block;
+    align-self: center;
+    width: 100%;
+    max-width: 100px;
+}
+
+.logoQuiz {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.saudacao {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.nomeDestaque {
+    font-weight: bold;
+    color: brown;
+}
+
+.areaPrincipal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.tituloVisitante,
+.subtituloVisitante {
+    display: flex;
+    justify-content: center;
+    padding-top: 3px;
+}
+
+.textoVisitante {
+    text-align: center;
+    padding-top: 15px;
+    margin-top: 36px;
+}
+
+#painelVisitante {
+    justify-content: center;
+}
+
+.btnCadastrarVisitante,
+.btnLoginVisitante {
+    display: flex;
+    justify-content: center;
+    border: solid 2px #000;
+    padding: 18px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btnLoginVisitante {
+    color: #B8893B;
+    background-color: #1F3A5F;
+    margin-top: 10px;
+}
+
+.btnCadastrarVisitante {
+    color: #1F3A5F;
+    background-color: #B8893B;
+    margin-bottom: 10px;
 }
 
 .dashboard {

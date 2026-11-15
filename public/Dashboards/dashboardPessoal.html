@@ -23,7 +23,7 @@
 
             <div class='botoesHeader'>
                 <a href='../website/devocoes.html' class='botao'>Minhas Devoções</a>
-                <a href='../Dashboards/dashboard.html' class='botao'>Painel</a>
+                <a href='../Dashboards/dashboardPublica.html' class='botao'>Painel</a>
                 <a href='../quizes/quizAfinidade.html' class='botao'>Quizzes</a>
                 <a href="../website/ordemDominicana.html" class="botao">Ordem Dominicana</a>
             </div>
@@ -44,7 +44,41 @@
         </div>
     </nav>
 
-<section class="dashboard">
+    <!-- BLOCO 1: VISITANTE (sem sessão ativa) -->
+    <div id="layoutVisitante">
+        <div class="fundoQuiz">
+            <!-- COLUNA ESQUERDA -->
+            <section class="painelLateral">
+                <a href="../website/index.html" class="logoHome" title="Voltar para a home">
+                    <img class="logoQuiz" src="../assets/media/inicial/logoOstensorio.png"
+                        alt="Logo - voltar para a home">
+                </a>
+                <p class="saudacao">
+                    Olá, <span class="nomeDestaque">visitante</span>.<br>
+                    Veja métricas e resultados!
+                </p>
+            </section>
+
+            <!-- COLUNA CENTRAL -->
+            <section class="areaPrincipal">
+                <h1 class='tituloVisitante'>Olá, visitante!</h1>
+                <h3 class='subtituloVisitante'>Seja bem-vindo à Dashboard!</h3>
+                <p class='textoVisitante'>
+                    Cadastre-se ou faça login em sua conta para poder ter acesso ao painél informativo!
+                </p>
+            </section>
+
+            <!-- COLUNA DIREITA -->
+            <section id="painelVisitante">
+                <a class='btnCadastrarVisitante' href='../cadastro/cadastro.html'>Cadastrar-se</a>
+                <a class='btnLoginVisitante' href='../login/login.html'>Fazer Login</a>
+            </section>
+        </div>
+    </div>
+
+    <!-- BLOCO 2: USUÁRIO LOGADO -->
+
+    <section id="layoutDashboard" class="dashboard" hidden>
         <div class="painel">
             <div class="container">
                 <h1 class='tituloDashboard'>Mais Sobre Mim!</h1>
@@ -53,7 +87,7 @@
                 <br><br><br>
 
                 <div class="linha-dashboard">
-                    
+
                     <div class="coluna">
                         <button class="botaoAdicionar botao-esq">Adicionar música</button>
                         <div class="cardKPI">
