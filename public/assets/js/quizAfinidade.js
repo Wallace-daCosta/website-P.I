@@ -61,7 +61,7 @@ const quizzes = {
                 alternativaD: "Na fraternidade São João Paulo II",
                 alternativaCorreta: "alternativaC"
             },
-           {
+            {
                 pergunta: "Que tipo de serviço Wallace deseja um dia prestar em uma paróquia?",
                 alternativaA: "Acólito",
                 alternativaB: "Catequista",
@@ -95,7 +95,7 @@ const quizzes = {
                 alternativaD: "Ao longo do dia",
                 alternativaCorreta: "alternativaA"
             },
-           {
+            {
                 pergunta: "Qual música católica favorita de Wallace?",
                 alternativaA: "Romanos 12",
                 alternativaB: "Estar em tuas mãos",
@@ -494,6 +494,19 @@ function atualizarPainelDePontuacao() {
 function onloadEsconder() {
     document.getElementById("pontuacao").style.display = "none";
     document.getElementById("jogo").style.display = "none";
+
+    if (sessionStorage.getItem("ID_USUARIO")) {
+
+        let primeiroNome = sessionStorage.getItem("PRIMEIRO_NOME");
+
+        document.getElementById("nomeVisitante").textContent = `${primeiroNome}!`;
+
+        document.querySelector("#layoutQuiz").style.setProperty("display", "flex", "important");
+        document.querySelector("#layoutVisitante").style.setProperty("display", "none", "important");
+    } else {
+        document.querySelector("#layoutQuiz").style.setProperty("display", "none", "important");
+        document.querySelector("#layoutVisitante").style.setProperty("display", "flex", "important");
+    }
 }
 
 function iniciarQuiz() {
@@ -830,6 +843,8 @@ function montarResultadoParaEnvio(chaveSanto) {
         santoResultado: chaveSanto
     };
 }
+
+
 
 // Troca a tela do quiz pelo card do santo.
 function mostrarResultadoSanto() {
