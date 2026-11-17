@@ -359,6 +359,32 @@ const bancoSantos = [
     }
 ];
 
+// ATENÇÃO: Este mapa depende da ORDEM exata das perguntas nos arrays acima.
+// Se você inserir, remover ou reordenar perguntas no JS, os IDs vão descasar do MySQL.
+const mapaPrimeiroIdPergunta = {
+    1: { facil: 1, medio: 7, dificil: 11 },
+    2: { facil: 13, medio: 19, dificil: 23 },
+    3: { facil: 25, medio: 25, dificil: 25 } // Os botões usam facil/medio/dificil; todos começam na pergunta 25
+};
+
+// Lista que guarda os idOpcao escolhidos na tentativa atual para enviar ao back-end
+var opcoesEscolhidasParaEnvio = [];
+
+function calcularIdOpcao(idQuiz, nivelBotao, indicePergunta, alternativaMarcada) {
+    // 1. Descobre o ID inicial no mapa usando o quiz e o nível clicado no botão
+    var primeiroId = mapaPrimeiroIdPergunta[idQuiz][nivelBotao];
+
+    // 2. Soma o índice da pergunta atual (0, 1, 2...) para achar o idPergunta no banco
+    var idPergunta = primeiroId + indicePergunta;
+
+    // 3. Extrai a última letra ("alternativaC" -> "C") e converte para 1, 2, 3 ou 4
+    var letra = alternativaMarcada.slice(-1);
+    var posicaoLetra = "ABCD".indexOf(letra) + 1;
+
+    // 4. Calcula o idOpcao exato da tabela 'opcao'
+    return (idPergunta - 1) * 4 + posicaoLetra;
+}
+
 // Monta o quiz 3 com as MESMAS chaves de tamanho (curto/medio/longo).
 // slice(0, N) pega as N primeiras perguntas do banco acima.
 quizzes[3] = {
@@ -619,6 +645,8 @@ function reiniciarEstado() {
     if (btnSubmeter) btnSubmeter.disabled = false;
     if (btnProx) btnProx.disabled = true;
     if (btnTentarNovamente) btnTentarNovamente.disabled = true;
+
+    opcoesEscolhidasParaEnvio = [];
 }
 
 function preencherHTMLcomQuestaoAtual(index) {
@@ -654,6 +682,15 @@ function submeter() {
     const { btnSubmeter, btnProx } = getBotoes();
     if (btnSubmeter) btnSubmeter.disabled = true;
     if (btnProx) btnProx.disabled = false;
+
+    const radioMarcado = document.querySelector('input[name="option"]:checked');
+    const idOpcaoAtual = calcularIdOpcao(
+        quizAtual,
+        dificuldadeAtual,
+        numeroDaQuestaoAtual,
+        radioMarcado.value
+    );
+    opcoesEscolhidasParaEnvio.push(idOpcaoAtual);
 
     habilitarAlternativas(false);
     checarResposta();
@@ -775,7 +812,58 @@ function desmarcarRadioButtons() {
     }
 }
 
+function enviarResultadoQuiz() {
+    const idUsuario = sessionStorage.getItem("ID_USUARIO");
+
+    // Passo 5.12: Se a sessão acabou em outra aba ou foi limpa, não dispara requisição inválida.
+    // O resultado visual na tela continua aparecendo normalmente para não frustrar o usuário.
+    if (!idUsuario) {
+        console.warn("Envio cancelado: ID_USUARIO não encontrado no sessionStorage.");
+        return;
+    }
+
+    // No quiz 3 (santos), traduz 'facil'/'medio'/'dificil' para 'curto'/'medio'/'longo'
+    const dificuldadeContrato = ehQuizDeSantos()
+        ? mapaNiveisSantos[dificuldadeAtual]
+        : dificuldadeAtual;
+
+    const payload = {
+        idUsuarioServer: Number(idUsuario),
+        idQuizServer: quizAtual,
+        dificuldadeServer: dificuldadeContrato,
+        opcoesServer: opcoesEscolhidasParaEnvio
+    };
+
+    fetch("/quizzes/registrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+        .then(function (resposta) {
+            const status = resposta.status;
+            return resposta.text().then(function (texto) {
+                return { status: status, texto: texto };
+            });
+        })
+        .then(function (resultado) {
+            if (resultado.status === 201) {
+                console.log("Tentativa gravada com sucesso:", resultado.texto);
+            } else if (resultado.status === 400) {
+                console.error("Erro de validação (400):", resultado.texto);
+            } else {
+                console.error("Erro inesperado no servidor (" + resultado.status + "):", resultado.texto);
+            }
+        })
+        .catch(function (erro) {
+            // Servidor fora do ar ou falha de rede: não quebra a exibição do resultado na tela
+            console.error("Falha de conexão ao tentar registrar o quiz:", erro);
+        });
+}
+
 function finalizarJogo() {
+    enviarResultadoQuiz();
     // Quiz de santos: em vez da mensagem de acertos, mostra o card do santo
     if (ehQuizDeSantos()) {
         mostrarResultadoSanto();
