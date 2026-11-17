@@ -2,10 +2,10 @@ var quizModel = require("../models/quizModel");
 
 function registrar(req, res) {
     // 3.8: Leitura dos 4 campos do contrato
-    var idUsuario = req.body.idUsuario;
-    var idQuiz = req.body.idQuiz;
-    var dificuldade = req.body.dificuldade;
-    var opcoes = req.body.opcoes;
+    var idUsuario = req.body.idUsuarioServer;
+    var idQuiz = req.body.idQuizServer;
+    var dificuldade = req.body.dificuldadeServer;
+    var opcoes = req.body.opcoesServer;
 
     var dificuldadesQuiz1e2 = ["facil", "medio", "dificil"];
     var dificuldadesQuiz3 = ["curto", "medio", "longo"];
