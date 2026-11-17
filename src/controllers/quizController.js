@@ -1,26 +1,18 @@
 var quizModel = require("../models/quizModel");
 
 function registrar(req, res) {
-    // 3.8: Leitura dos 4 campos do contrato
+    // 6.4: Leitura sem dificuldadeServer
     var idUsuario = req.body.idUsuarioServer;
     var idQuiz = req.body.idQuizServer;
-    var dificuldade = req.body.dificuldadeServer;
     var opcoes = req.body.opcoesServer;
 
-    var dificuldadesQuiz1e2 = ["facil", "medio", "dificil"];
-    var dificuldadesQuiz3 = ["curto", "medio", "longo"];
-
-    // 3.9: Validações em cadeia (if / else if) com status 400
-    if (idUsuario == undefined || idQuiz == undefined || dificuldade == undefined || opcoes == undefined) {
-        return res.status(400).send("Campos obrigatórios ausentes (idUsuario, idQuiz, dificuldade ou opcoes).");
+    // Validações em cadeia sem dificuldade
+    if (idUsuario == undefined || idQuiz == undefined || opcoes == undefined) {
+        return res.status(400).send("Campos obrigatórios ausentes (idUsuario, idQuiz ou opcoes).");
     } else if (isNaN(Number(idUsuario)) || Number(idUsuario) <= 0) {
         return res.status(400).send("O idUsuario deve ser um número válido.");
     } else if (Number(idQuiz) !== 1 && Number(idQuiz) !== 2 && Number(idQuiz) !== 3) {
         return res.status(400).send("O idQuiz deve ser 1, 2 ou 3.");
-    } else if ((Number(idQuiz) === 1 || Number(idQuiz) === 2) && !dificuldadesQuiz1e2.includes(dificuldade)) {
-        return res.status(400).send("Dificuldade inválida para este quiz (permitido: facil, medio ou dificil).");
-    } else if (Number(idQuiz) === 3 && !dificuldadesQuiz3.includes(dificuldade)) {
-        return res.status(400).send("Dificuldade inválida para o quiz 3 (permitido: curto, medio ou longo).");
     } else if (!Array.isArray(opcoes) || opcoes.length === 0 || opcoes.length > 15) {
         return res.status(400).send("O campo opcoes deve ser uma lista contendo de 1 a 15 itens.");
     }
@@ -59,43 +51,55 @@ function registrar(req, res) {
                 }
             }
 
-            // 3.11: Registra a tentativa e recupera o insertId
-            return quizModel.registrarTentativa(idUsuarioNum, idQuizNum, dificuldade)
-                .then(function (resultadoTentativa) {
-                    var idTentativa = resultadoTentativa.insertId;
+            // 6.4: Confere o total de perguntas ativas ANTES de criar a tentativa
+            return quizModel.contarPerguntasAtivas(idQuizNum)
+                .then(function (resultadoContagem) {
+                    var totalEsperado = Number(resultadoContagem[0].total);
 
-                    // 3.12: Monta [[idTentativa, fkPergunta, idOpcao], ...] usando o retorno do banco
-                    var linhas = [];
-                    for (var i = 0; i < resultadoOpcoes.length; i++) {
-                        linhas.push([
-                            idTentativa,
-                            resultadoOpcoes[i].fkPergunta,
-                            resultadoOpcoes[i].idOpcao
-                        ]);
+                    if (opcoes.length !== totalEsperado) {
+                        return res.status(400).send(
+                            `Quantidade de respostas inválida. Eram esperadas ${totalEsperado} respostas para este quiz, mas foram enviadas ${opcoes.length}.`
+                        );
                     }
 
-                    return quizModel.gravarRespostas(linhas)
-                        .then(function () {
-                            return res.status(201).json({
-                                idTentativa: idTentativa
-                            });
+                    // 3.11 / 6.3: Registra a tentativa (apenas usuário e quiz) e recupera o insertId
+                    return quizModel.registrarTentativa(idUsuarioNum, idQuizNum)
+                        .then(function (resultadoTentativa) {
+                            var idTentativa = resultadoTentativa.insertId;
+
+                            // 3.12: Monta [[idTentativa, fkPergunta, idOpcao], ...] usando o retorno do banco
+                            var linhas = [];
+                            for (var i = 0; i < resultadoOpcoes.length; i++) {
+                                linhas.push([
+                                    idTentativa,
+                                    resultadoOpcoes[i].fkPergunta,
+                                    resultadoOpcoes[i].idOpcao
+                                ]);
+                            }
+
+                            return quizModel.gravarRespostas(linhas)
+                                .then(function () {
+                                    return res.status(201).json({
+                                        idTentativa: idTentativa
+                                    });
+                                })
+                                .catch(function (erroRespostas) {
+                                    // 3.13: Se gravarRespostas falhar, desfaz a tentativa e responde 500
+                                    quizModel.apagarTentativa(idTentativa);
+                                    return res.status(500).json(erroRespostas.sqlMessage || erroRespostas);
+                                });
                         })
-                        .catch(function (erroRespostas) {
-                            // 3.13: Se gravarRespostas falhar, desfaz a tentativa e responde 500
-                            quizModel.apagarTentativa(idTentativa);
-                            return res.status(500).json(erroRespostas.sqlMessage || erroRespostas);
+                        .catch(function (erroTentativa) {
+                            // 3.13: FK inválida (usuário ou quiz inexistente) vira 400; demais viram 500
+                            if (erroTentativa.code === "ER_NO_REFERENCED_ROW_2") {
+                                return res.status(400).send("Usuário ou quiz inexistente.");
+                            }
+                            return res.status(500).json(erroTentativa.sqlMessage || erroTentativa);
                         });
-                })
-                .catch(function (erroTentativa) {
-                    // 3.13: FK inválida (usuário ou quiz inexistente) vira 400; demais viram 500
-                    if (erroTentativa.code === "ER_NO_REFERENCED_ROW_2") {
-                        return res.status(400).send("Usuário ou quiz inexistente.");
-                    }
-                    return res.status(500).json(erroTentativa.sqlMessage || erroTentativa);
                 });
         })
         .catch(function (erroBusca) {
-            // 3.13: Erro na busca de opções responde 500
+            // 3.13: Erro na busca de opções ou na contagem responde 500
             return res.status(500).json(erroBusca.sqlMessage || erroBusca);
         });
 }

@@ -13,221 +13,244 @@ function alternarMenu() {
 }
 
 /* =========================================================
-   BANCO DE QUIZZES (Quiz → Dificuldade → Perguntas)
-   Quizzes 1 e 2: perguntas com resposta certa/errada (inalterados).
-   Quiz 3 (Santos): perguntas SEM certo/errado. Cada alternativa soma
-   ponto para um santo. Veja o bloco "BANCO DO QUIZ DE SANTOS" mais abaixo.
+   TEXTOS DESCRITIVOS DOS QUIZZES (Coluna Direita)
+   Exibidos abaixo dos botões de seleção quando o quiz está ativo.
+   Edite os textos livremente conforme desejar.
+   ========================================================= */
+const descricoesQuizzes = {
+    1: "Afinidade com Wallace: descubra o quanto você conhece o Wallace com algumas perguntas sobre sua caminhada católica, preferências, história e outras curiosidades em 12 perguntas progressivas!",
+    2: "Fé Católica: descubra o quanto você está inteirado e conhece da Fé Católica através de 12 perguntas que se tornam cada vez mais difíceis!",
+    3: "Que Santo lembra você: descubra através de 15 perguntas pessoais sobre suas preferências e comportamentos, e veja qual santo se assemelha com você!"
+};
+
+/* =========================================================
+   BANCO DE QUIZZES (Quiz → Lista Contínua de Perguntas)
+   Quizzes 1 e 2: 12 perguntas em fluxo único (fácil → médio → difícil).
+   Quiz 3 (Santos): 15 perguntas SEM certo/errado (montado a partir
+   de "bancoSantos" mais abaixo).
    ========================================================= */
 const quizzes = {
-    1: {
-        facil: [
-            {
-                pergunta: "Qual principal Santo de Devoção de Wallace?",
-                alternativaA: "Santo Tomás de Aquino",
-                alternativaB: "São Miguel",
-                alternativaC: "Virgem Maria",
-                alternativaD: "São Bento",
-                alternativaCorreta: "alternativaA"
-            },
-            {
-                pergunta: "Qual fraternidade Wallace costuma frequentar?",
-                alternativaA: "Fraternidade São Pio X",
-                alternativaB: "Fraternidade O Caminho",
-                alternativaC: "Fraternidade Sem Fronteiras",
-                alternativaD: "Fraternidade São João Paulo II",
-                alternativaCorreta: "alternativaD"
-            },
-            {
-                pergunta: "Há quantos dias consecutivos Wallace reza o terço?",
-                alternativaA: "45 dias",
-                alternativaB: "90 dias",
-                alternativaC: "270 dias",
-                alternativaD: "365 dias",
-                alternativaCorreta: "alternativaC"
-            },
-            {
-                pergunta: "Em que ano Wallace iniciou sua caminha de conversão?",
-                alternativaA: "2010",
-                alternativaB: "2020",
-                alternativaC: "2025",
-                alternativaD: "2026",
-                alternativaCorreta: "alternativaD"
-            },
-            {
-                pergunta: "Qual foi o primeiro contato de Wallace com a Igreja?",
-                alternativaA: "Pelo Anjo da Guarda e orações em família",
-                alternativaB: "Em retiro, num convento",
-                alternativaC: "Na catequese infantil",
-                alternativaD: "Na fraternidade São João Paulo II",
-                alternativaCorreta: "alternativaC"
-            },
-            {
-                pergunta: "Que tipo de serviço Wallace deseja um dia prestar em uma paróquia?",
-                alternativaA: "Acólito",
-                alternativaB: "Catequista",
-                alternativaC: "Sacerdote",
-                alternativaD: "Frade",
-                alternativaCorreta: "alternativaB"
-            }
-        ],
-        medio: [
-            {
-                pergunta: "Qual a maior dificuldade de Wallace hoje no catolicismo?",
-                alternativaA: "Entender os dogmas marianos",
-                alternativaB: "Entender o corpo e sangue de Cristo na Eucaristia",
-                alternativaC: "Viver a Castidade",
-                alternativaD: "Viver a Fé Católica",
-                alternativaCorreta: "alternativaC"
-            },
-            {
-                pergunta: "Qual livro (da bíblia) favorito de Wallace?",
-                alternativaA: "Eclesiastes",
-                alternativaB: "Eclesiástico",
-                alternativaC: "Apocalipse",
-                alternativaD: "Gênesis",
-                alternativaCorreta: "alternativaA"
-            },
-            {
-                pergunta: "Que horário do dia Wallace costuma rezar o terço?",
-                alternativaA: "Manhã",
-                alternativaB: "Tarde",
-                alternativaC: "Noite",
-                alternativaD: "Ao longo do dia",
-                alternativaCorreta: "alternativaA"
-            },
-            {
-                pergunta: "Qual música católica favorita de Wallace?",
-                alternativaA: "Romanos 12",
-                alternativaB: "Estar em tuas mãos",
-                alternativaC: "Jardim",
-                alternativaD: "Dias de Glória (Muralhas Cairão)",
-                alternativaCorreta: "alternativaB"
-            }
-        ],
-        dificil: [
-            {
-                pergunta: "Quais orações Wallace costuma fazer ao longo do dia (fora do terço)?",
-                alternativaA: "Ato de Fé, Ato de Esperança, Ato de Caridade",
-                alternativaB: "Pai Nosso, Ave Maria, Comunhão Espiritual",
-                alternativaC: "Laudes, Vésperas, Completas",
-                alternativaD: "Credo Nicênico, Credo Apostólico, Magnificat",
-                alternativaCorreta: "alternativaC"
-            },
-            {
-                pergunta: "Por que Wallace se autointitula como um 'dominicano leigo'?",
-                alternativaA: "Por gostar de domingos e participar de todas Santas Missas dominicais",
-                alternativaB: "Por se identificar com Santo Tomás de Aquino e ser estudioso como ele",
-                alternativaC: "Por ter conhecido pessoas e familiares da ordem, a quem admira muito",
-                alternativaD: "Por compartilhar da mesma busca pela Verdade e pregação que a ordem",
-                alternativaCorreta: "alternativaD"
-            }
-        ]
-    },
+    1: [
+        {
+            dificuldade: "fácil",
+            pergunta: "Qual principal Santo de Devoção de Wallace?",
+            alternativaA: "Santo Tomás de Aquino",
+            alternativaB: "São Miguel",
+            alternativaC: "Virgem Maria",
+            alternativaD: "São Bento",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            dificuldade: "fácil",
+            pergunta: "Qual fraternidade Wallace costuma frequentar?",
+            alternativaA: "Fraternidade São Pio X",
+            alternativaB: "Fraternidade O Caminho",
+            alternativaC: "Fraternidade Sem Fronteiras",
+            alternativaD: "Fraternidade São João Paulo II",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            dificuldade: "fácil",
+            pergunta: "Há quantos dias consecutivos Wallace reza o terço?",
+            alternativaA: "45 dias",
+            alternativaB: "90 dias",
+            alternativaC: "270 dias",
+            alternativaD: "365 dias",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            dificuldade: "fácil",
+            pergunta: "Em que ano Wallace iniciou sua caminha de conversão?",
+            alternativaA: "2010",
+            alternativaB: "2020",
+            alternativaC: "2025",
+            alternativaD: "2026",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            dificuldade: "fácil",
+            pergunta: "Qual foi o primeiro contato de Wallace com a Igreja?",
+            alternativaA: "Pelo Anjo da Guarda e orações em família",
+            alternativaB: "Em retiro, num convento",
+            alternativaC: "Na catequese infantil",
+            alternativaD: "Na fraternidade São João Paulo II",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            dificuldade: "fácil",
+            pergunta: "Que tipo de serviço Wallace deseja um dia prestar em uma paróquia?",
+            alternativaA: "Acólito",
+            alternativaB: "Catequista",
+            alternativaC: "Sacerdote",
+            alternativaD: "Frade",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            dificuldade: "médio",
+            pergunta: "Qual a maior dificuldade de Wallace hoje no catolicismo?",
+            alternativaA: "Entender os dogmas marianos",
+            alternativaB: "Entender o corpo e sangue de Cristo na Eucaristia",
+            alternativaC: "Viver a Castidade",
+            alternativaD: "Viver a Fé Católica",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            dificuldade: "médio",
+            pergunta: "Qual livro (da bíblia) favorito de Wallace?",
+            alternativaA: "Eclesiastes",
+            alternativaB: "Eclesiástico",
+            alternativaC: "Apocalipse",
+            alternativaD: "Gênesis",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            dificuldade: "médio",
+            pergunta: "Que horário do dia Wallace costuma rezar o terço?",
+            alternativaA: "Manhã",
+            alternativaB: "Tarde",
+            alternativaC: "Noite",
+            alternativaD: "Ao longo do dia",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            dificuldade: "médio",
+            pergunta: "Qual música católica favorita de Wallace?",
+            alternativaA: "Romanos 12",
+            alternativaB: "Estar em tuas mãos",
+            alternativaC: "Jardim",
+            alternativaD: "Dias de Glória (Muralhas Cairão)",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            dificuldade: "difícil",
+            pergunta: "Quais orações Wallace costuma fazer ao longo do dia (fora do terço)?",
+            alternativaA: "Ato de Fé, Ato de Esperança, Ato de Caridade",
+            alternativaB: "Pai Nosso, Ave Maria, Comunhão Espiritual",
+            alternativaC: "Laudes, Vésperas, Completas",
+            alternativaD: "Credo Nicênico, Credo Apostólico, Magnificat",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            dificuldade: "difícil",
+            pergunta: "Por que Wallace se autointitula como um 'dominicano leigo'?",
+            alternativaA: "Por gostar de domingos e participar de todas Santas Missas dominicais",
+            alternativaB: "Por se identificar com Santo Tomás de Aquino e ser estudioso como ele",
+            alternativaC: "Por ter conhecido pessoas e familiares da ordem, a quem admira muito",
+            alternativaD: "Por compartilhar da mesma busca pela Verdade e pregação que a ordem",
+            alternativaCorreta: "alternativaD"
+        }
+    ],
 
-    2: {
-        facil: [
-            {
-                pergunta: "Quem é a Santíssima Trindade?",
-                alternativaA: "O Pai, O Filho e o Espírito Santo",
-                alternativaB: "Virgem Maria, Jesus Cristo, São José",
-                alternativaC: "Belchior, Melquior, Gaspar",
-                alternativaD: "Pão, Vinho, Cordeiro",
-                alternativaCorreta: "alternativaA"
-            },
-            {
-                pergunta: "Quais os quatro Evangelistas?",
-                alternativaA: "Moisés, Elias, Paulo, Lucas",
-                alternativaB: "Elias, Mateus, João, Thiago",
-                alternativaC: "Mateus, Marcos, Lucas, João",
-                alternativaD: "Marcos, Lucas, Moisés, Thiago",
-                alternativaCorreta: "alternativaC"
-            },
-            {
-                pergunta: "Qual a principal oração ensinada por Jesus Cristo?",
-                alternativaA: "Ave Maria",
-                alternativaB: "Magnificat",
-                alternativaC: "Pai Nosso",
-                alternativaD: "Credo",
-                alternativaCorreta: "alternativaC"
-            },
-            {
-                pergunta: "Qual é o último livro da bíblia?",
-                alternativaA: "Gênesis",
-                alternativaB: "Apocalipse",
-                alternativaC: "Ato dos Apóstolos",
-                alternativaD: "Encerramento",
-                alternativaCorreta: "alternativaB"
-            },
-            {
-                pergunta: "O que é narrado em Gênesis?",
-                alternativaA: "O fim dos tempos",
-                alternativaB: "O êxodo de Moisés",
-                alternativaC: "As histórias do Rei Salomão",
-                alternativaD: "A criação",
-                alternativaCorreta: "alternativaD"
-            },
-            {
-                pergunta: "Quem traiu Jesus por 30 moedas de prata?",
-                alternativaA: "Judas Iscariotes",
-                alternativaB: "Judas Tadeu",
-                alternativaC: "Saulo Iscariotes",
-                alternativaD: "Bento de Núrsia",
-                alternativaCorreta: "alternativaA"
-            }
-        ],
-        medio: [
-            {
-                pergunta: "Quem é o atual Papa da Igreja Católica?",
-                alternativaA: "Papa Francisco",
-                alternativaB: "Papa Leão XIV",
-                alternativaC: "Papa João Paulo II",
-                alternativaD: "Papa Leão XIII",
-                alternativaCorreta: "alternativaB"
-            },
-            {
-                pergunta: "Quais as três mais importantes orações católicas?",
-                alternativaA: "Ave Maria, Pai Nosso, Credo",
-                alternativaB: "Ave Maria, Pai Nosso, Magnificat",
-                alternativaC: "Pai Nosso, Ave Maria, Alma de Cristo",
-                alternativaD: "Pai Nosso, Ave Maria, Cordeiro de Deus",
-                alternativaCorreta: "alternativaA"
-            },
-            {
-                pergunta: "Quantas leituras + salmos temos nas Eucaristias de Domingo?",
-                alternativaA: "1",
-                alternativaB: "2",
-                alternativaC: "3",
-                alternativaD: "4",
-                alternativaCorreta: "alternativaD"
-            },
-            {
-                pergunta: "Qual o nome da oração de Nossa Senhora na sua visita à Santa Isabel?",
-                alternativaA: "Credo",
-                alternativaB: "Ato dos Apóstolos",
-                alternativaC: "Comunhão Espiritual",
-                alternativaD: "Magnificat",
-                alternativaCorreta: "alternativaD"
-            }
-        ],
-        dificil: [
-            {
-                pergunta: "Quais os quatro dogmas Marianos?",
-                alternativaA: "Imaculada Conceição, Maternidade Divina, Virgindade Perpétua, Assunção de Nossa Senhora",
-                alternativaB: "Rainha do Céu, Primeiro Sacrário, Mãe de Deus, Virgindade Perpétua ",
-                alternativaC: "Maternidade Divina, Assunção de Nossa Senhora, Gloriosa Coroação, Rainha do Céu",
-                alternativaD: "Senhora das Graças, Mãe dos Aflitos, Desatadora de Nós, Senhora do Rosário",
-                alternativaCorreta: "alternativaA"
-            },
-            {
-                pergunta: "Como pão e vinho se tornam Corpo e Sangue de Cristo, na consagração da Eucaristia?",
-                alternativaA: "Jesus Cristo se encarna no pão e no vinho, tornando-os o próprio Corpo e Sangue de Deus",
-                alternativaB: "Pela oferta, o próprio Deus abençoa as espécies Eucarísticas (pão e vinho) para fazer parte da sua essência",
-                alternativaC: "O Espírito Santo de Deus paira sobre a Igreja, abençoando as espécies Eucarísticas (pão e vinho), e os fiéis que o consomem",
-                alternativaD: "O pão e o vinho deixam de ter substâncias naturais e se tornam, substancialmente, o Corpo e o Sangue de Cristo",
-                alternativaCorreta: "alternativaD"
-            }
-        ]
-    }
+    2: [
+        {
+            dificuldade: "fácil",
+            pergunta: "Quem é a Santíssima Trindade?",
+            alternativaA: "O Pai, O Filho e o Espírito Santo",
+            alternativaB: "Virgem Maria, Jesus Cristo, São José",
+            alternativaC: "Belchior, Melquior, Gaspar",
+            alternativaD: "Pão, Vinho, Cordeiro",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            dificuldade: "fácil",
+            pergunta: "Quais os quatro Evangelistas?",
+            alternativaA: "Moisés, Elias, Paulo, Lucas",
+            alternativaB: "Elias, Mateus, João, Thiago",
+            alternativaC: "Mateus, Marcos, Lucas, João",
+            alternativaD: "Marcos, Lucas, Moisés, Thiago",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            dificuldade: "fácil",
+            pergunta: "Qual a principal oração ensinada por Jesus Cristo?",
+            alternativaA: "Ave Maria",
+            alternativaB: "Magnificat",
+            alternativaC: "Pai Nosso",
+            alternativaD: "Credo",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            dificuldade: "fácil",
+            pergunta: "Qual é o último livro da bíblia?",
+            alternativaA: "Gênesis",
+            alternativaB: "Apocalipse",
+            alternativaC: "Ato dos Apóstolos",
+            alternativaD: "Encerramento",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            dificuldade: "fácil",
+            pergunta: "O que é narrado em Gênesis?",
+            alternativaA: "O fim dos tempos",
+            alternativaB: "O êxodo de Moisés",
+            alternativaC: "As histórias do Rei Salomão",
+            alternativaD: "A criação",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            dificuldade: "fácil",
+            pergunta: "Quem traiu Jesus por 30 moedas de prata?",
+            alternativaA: "Judas Iscariotes",
+            alternativaB: "Judas Tadeu",
+            alternativaC: "Saulo Iscariotes",
+            alternativaD: "Bento de Núrsia",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            dificuldade: "médio",
+            pergunta: "Quem é o atual Papa da Igreja Católica?",
+            alternativaA: "Papa Francisco",
+            alternativaB: "Papa Leão XIV",
+            alternativaC: "Papa João Paulo II",
+            alternativaD: "Papa Leão XIII",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            dificuldade: "médio",
+            pergunta: "Quais as três mais importantes orações católicas?",
+            alternativaA: "Ave Maria, Pai Nosso, Credo",
+            alternativaB: "Ave Maria, Pai Nosso, Magnificat",
+            alternativaC: "Pai Nosso, Ave Maria, Alma de Cristo",
+            alternativaD: "Pai Nosso, Ave Maria, Cordeiro de Deus",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            dificuldade: "médio",
+            pergunta: "Quantas leituras + salmos temos nas Eucaristias de Domingo?",
+            alternativaA: "1",
+            alternativaB: "2",
+            alternativaC: "3",
+            alternativaD: "4",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            dificuldade: "médio",
+            pergunta: "Qual o nome da oração de Nossa Senhora na sua visita à Santa Isabel?",
+            alternativaA: "Credo",
+            alternativaB: "Ato dos Apóstolos",
+            alternativaC: "Comunhão Espiritual",
+            alternativaD: "Magnificat",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            dificuldade: "difícil",
+            pergunta: "Quais os quatro dogmas Marianos?",
+            alternativaA: "Imaculada Conceição, Maternidade Divina, Virgindade Perpétua, Assunção de Nossa Senhora",
+            alternativaB: "Rainha do Céu, Primeiro Sacrário, Mãe de Deus, Virgindade Perpétua ",
+            alternativaC: "Maternidade Divina, Assunção de Nossa Senhora, Gloriosa Coroação, Rainha do Céu",
+            alternativaD: "Senhora das Graças, Mãe dos Aflitos, Desatadora de Nós, Senhora do Rosário",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            dificuldade: "difícil",
+            pergunta: "Como pão e vinho se tornam Corpo e Sangue de Cristo, na consagração da Eucaristia?",
+            alternativaA: "Jesus Cristo se encarna no pão e no vinho, tornando-os o próprio Corpo e Sangue de Deus",
+            alternativaB: "Pela oferta, o próprio Deus abençoa as espécies Eucarísticas (pão e vinho) para fazer parte da sua essência",
+            alternativaC: "O Espírito Santo de Deus paira sobre a Igreja, abençoando as espécies Eucarísticas (pão e vinho), e os fiéis que o consomem",
+            alternativaD: "O pão e o vinho deixam de ter substâncias naturais e se tornam, substancialmente, o Corpo e o Sangue de Cristo",
+            alternativaCorreta: "alternativaD"
+        }
+    ]
 
     // O quiz 3 (Santos) é montado logo abaixo, a partir do banco "bancoSantos".
 };
@@ -240,16 +263,6 @@ const quizzes = {
        alternativaA: "texto que o usuário lê"
        santoA:       "São Tomás de Aquino"   <- quem ganha o ponto se escolher a A
    (o mesmo vale para B, C e D)
-
-   COMO EDITAR:
-   - Mudar texto de pergunta/alternativa: edite os textos.
-   - Mudar quem ganha o ponto: troque o valor de santoA/B/C/D.
-   - Adicionar um 5º santo: crie "santo5" no objeto "santos" abaixo
-     e use "santo5" nas perguntas (o placar se ajusta sozinho).
-   - Tamanho dos quizzes (curto/médio/longo): veja "quizzes[3]" mais
-     abaixo. Curto = 5 primeiras perguntas, Médio = 10 primeiras,
-     Longo = as 15. Então as PRIMEIRAS perguntas são as mais
-     importantes (aparecem em todas as versões).
    ========================================================= */
 const bancoSantos = [
     {
@@ -362,17 +375,17 @@ const bancoSantos = [
 // ATENÇÃO: Este mapa depende da ORDEM exata das perguntas nos arrays acima.
 // Se você inserir, remover ou reordenar perguntas no JS, os IDs vão descasar do MySQL.
 const mapaPrimeiroIdPergunta = {
-    1: { facil: 1, medio: 7, dificil: 11 },
-    2: { facil: 13, medio: 19, dificil: 23 },
-    3: { facil: 25, medio: 25, dificil: 25 } // Os botões usam facil/medio/dificil; todos começam na pergunta 25
+    1: 1,
+    2: 13,
+    3: 25
 };
 
 // Lista que guarda os idOpcao escolhidos na tentativa atual para enviar ao back-end
 var opcoesEscolhidasParaEnvio = [];
 
-function calcularIdOpcao(idQuiz, nivelBotao, indicePergunta, alternativaMarcada) {
-    // 1. Descobre o ID inicial no mapa usando o quiz e o nível clicado no botão
-    var primeiroId = mapaPrimeiroIdPergunta[idQuiz][nivelBotao];
+function calcularIdOpcao(idQuiz, indicePergunta, alternativaMarcada) {
+    // 1. Descobre o ID inicial no mapa usando o quiz selecionado
+    var primeiroId = mapaPrimeiroIdPergunta[idQuiz];
 
     // 2. Soma o índice da pergunta atual (0, 1, 2...) para achar o idPergunta no banco
     var idPergunta = primeiroId + indicePergunta;
@@ -385,20 +398,11 @@ function calcularIdOpcao(idQuiz, nivelBotao, indicePergunta, alternativaMarcada)
     return (idPergunta - 1) * 4 + posicaoLetra;
 }
 
-// Monta o quiz 3 com as MESMAS chaves de tamanho (curto/medio/longo).
-// slice(0, N) pega as N primeiras perguntas do banco acima.
-quizzes[3] = {
-    curto: bancoSantos.slice(0, 5),    // 5 questões
-    medio: bancoSantos.slice(0, 10),   // 10 questões
-    longo: bancoSantos.slice(0, 15)    // 15 questões
-};
+// Monta o quiz 3 com todas as 15 questões do banco acima.
+quizzes[3] = bancoSantos;
 
 /* =========================================================
    SANTOS (resultado do quiz 3)
-   ---------------------------------------------------------
-   Cada chave (São Tomás de Aquino, São Miguel Arcanjo...) é a mesma usada em santoA/B/C/D
-   nas perguntas. Futuramente isso pode vir de uma tabela "santos"
-   no banco de dados via API.
    ========================================================= */
 const santos = {
     "São Tomás de Aquino": {
@@ -423,9 +427,6 @@ const santos = {
     }
 };
 
-// true  = resultado MOCADO: sempre mostra "São Tomás de Aquino", mesmo com pontos diferentes.
-// false = resultado REAL: mostra o santo que mais pontuou.
-// (Os pontos são somados normalmente nos dois casos; veja o console do navegador.)
 const MOCAR_RESULTADO = false;
 
 /* =========================================================
@@ -433,17 +434,11 @@ const MOCAR_RESULTADO = false;
    ========================================================= */
 const QUIZ_SANTOS = 3;
 
-// Os botões de nível do HTML continuam com os valores 'facil', 'medio' e
-// 'dificil'. No quiz de santos, esses valores são traduzidos para as
-// chaves do quizzes[3] por este mapa.
-const mapaNiveisSantos = { facil: "curto", medio: "medio", dificil: "longo" };
-
 /* =========================================================
    VARIÁVEIS GLOBAIS
    ========================================================= */
 let quizAtual = 1;
-let dificuldadeAtual = "facil";
-let listaDeQuestoes = quizzes[1].facil;
+let listaDeQuestoes = quizzes[1];
 let numeroDaQuestaoAtual = 0;
 let pontuacaoFinal = 0;
 let certas = 0;
@@ -452,7 +447,7 @@ let quantidadeDeQuestoes = listaDeQuestoes.length;
 
 // Placar do quiz de santos: { São Tomás de Aquino: 0, São Miguel Arcanjo: 0, ... }
 let pontosPorSanto = {};
-// Histórico de respostas (útil para enviar a uma API no futuro)
+// Histórico de respostas
 let respostasDoUsuario = [];
 
 /* =========================================================
@@ -471,7 +466,7 @@ function getBotoes() {
 }
 
 /* =========================================================
-   FUNÇÕES AUXILIARES (novas)
+   FUNÇÕES AUXILIARES
    ========================================================= */
 
 // Diz se o quiz selecionado é o de santos (lógica de pontos por santo).
@@ -479,24 +474,9 @@ function ehQuizDeSantos() {
     return quizAtual === QUIZ_SANTOS;
 }
 
-// Busca a lista de perguntas de um quiz/nível.
-// No quiz de santos, traduz facil/medio/dificil -> curto/medio/longo.
-function obterListaDeQuestoes(quiz, nivel) {
-    if (!quizzes[quiz]) return undefined;
-    const chave = (quiz === QUIZ_SANTOS) ? mapaNiveisSantos[nivel] : nivel;
-    return quizzes[quiz][chave];
-}
-
-// Troca o texto dos botões de nível conforme o quiz:
-// quiz de santos -> Curto/Médio/Longo; demais -> Fácil/Médio/Difícil.
-function atualizarRotulosDificuldade() {
-    const textos = ehQuizDeSantos()
-        ? { btnFacil: "Curto", btnMedio: "Médio", btnDificil: "Longo" }
-        : { btnFacil: "Fácil", btnMedio: "Médio", btnDificil: "Difícil" };
-
-    for (const id in textos) {
-        document.getElementById(id).innerHTML = textos[id];
-    }
+// Busca a lista de perguntas de um quiz.
+function obterListaDeQuestoes(quiz) {
+    return quizzes[quiz];
 }
 
 // Zera o placar de todos os santos cadastrados em "santos".
@@ -513,6 +493,21 @@ function atualizarPainelDePontuacao() {
     document.getElementById("pontuacao").style.display = ehQuizDeSantos() ? "none" : "flex";
 }
 
+// Atualiza o texto descritivo abaixo dos botões de seleção de quiz (quando iniciado).
+function atualizarTextoInfoQuiz(visivel) {
+    const boxInfo = document.getElementById("infoQuizSelecionado");
+    const textoInfo = document.getElementById("textoInfoQuiz");
+
+    if (!boxInfo || !textoInfo) return;
+
+    if (visivel) {
+        textoInfo.textContent = descricoesQuizzes[quizAtual] || "";
+        boxInfo.hidden = false;
+    } else {
+        boxInfo.hidden = true;
+    }
+}
+
 /* =========================================================
    FUNÇÕES
    ========================================================= */
@@ -520,6 +515,7 @@ function atualizarPainelDePontuacao() {
 function onloadEsconder() {
     document.getElementById("pontuacao").style.display = "none";
     document.getElementById("jogo").style.display = "none";
+    atualizarTextoInfoQuiz(false);
 
     if (sessionStorage.getItem("ID_USUARIO")) {
 
@@ -536,20 +532,20 @@ function onloadEsconder() {
 }
 
 function iniciarQuiz() {
-    // Garante que está usando o quiz/dificuldade selecionados
-    listaDeQuestoes = obterListaDeQuestoes(quizAtual, dificuldadeAtual);
+    listaDeQuestoes = obterListaDeQuestoes(quizAtual);
     quantidadeDeQuestoes = listaDeQuestoes ? listaDeQuestoes.length : 0;
 
-    console.log("Quiz atual:", quizAtual, "Dificuldade:", dificuldadeAtual);
+    console.log("Quiz atual:", quizAtual);
     console.log("Quantidade de questões:", quantidadeDeQuestoes);
     console.log("Lista:", listaDeQuestoes);
 
     if (!listaDeQuestoes || quantidadeDeQuestoes === 0) {
-        alert("Este quiz/dificuldade ainda não tem perguntas!");
+        alert("Este quiz ainda não tem perguntas!");
         return;
     }
 
     atualizarPainelDePontuacao();
+    atualizarTextoInfoQuiz(true);
     document.getElementById("jogo").style.display = "flex";
     document.getElementById("btnIniciarQuiz").style.display = "none";
 
@@ -565,13 +561,13 @@ function iniciarQuiz() {
 }
 
 function selecionarQuiz(numero) {
-    if (!obterListaDeQuestoes(numero, dificuldadeAtual)) {
+    if (!obterListaDeQuestoes(numero)) {
         alert("Quiz não encontrado!");
         return;
     }
 
     quizAtual = numero;
-    listaDeQuestoes = obterListaDeQuestoes(numero, dificuldadeAtual);
+    listaDeQuestoes = obterListaDeQuestoes(numero);
     quantidadeDeQuestoes = listaDeQuestoes.length;
 
     // Destaque visual dos botões de quiz
@@ -580,35 +576,11 @@ function selecionarQuiz(numero) {
     const btn = document.getElementById(ids[numero]);
     if (btn) btn.classList.add("ativo");
 
-    // Troca "Fácil/Médio/Difícil" por "Curto/Médio/Longo" (ou o contrário)
-    atualizarRotulosDificuldade();
-
     reiniciarEstado();
     atualizarJogoAposTrocaDeConfiguracao();
 }
 
-function selecionarDificuldade(dificuldade) {
-    if (!obterListaDeQuestoes(quizAtual, dificuldade)) {
-        alert("Dificuldade não encontrada para este quiz!");
-        return;
-    }
-
-    dificuldadeAtual = dificuldade;
-    listaDeQuestoes = obterListaDeQuestoes(quizAtual, dificuldade);
-    quantidadeDeQuestoes = listaDeQuestoes.length;
-
-    // Destaque visual dos botões de dificuldade
-    document.querySelectorAll(".botaoDificuldade").forEach(btn => btn.classList.remove("ativo"));
-    const mapa = { facil: "btnFacil", medio: "btnMedio", dificil: "btnDificil" };
-    const btn = document.getElementById(mapa[dificuldade]);
-    if (btn) btn.classList.add("ativo");
-
-    reiniciarEstado();
-    atualizarJogoAposTrocaDeConfiguracao();
-}
-
-// Depois de trocar quiz ou nível, ajusta a tela conforme o estado atual.
-// (Código que antes estava repetido dentro de selecionarQuiz/selecionarDificuldade.)
+// Depois de trocar de quiz, ajusta a tela conforme o estado atual.
 function atualizarJogoAposTrocaDeConfiguracao() {
     // Se o card de resultado estava na tela, volta para o menu inicial
     if (document.getElementById("cardResultado").style.display === "flex") {
@@ -616,9 +588,10 @@ function atualizarJogoAposTrocaDeConfiguracao() {
         return;
     }
 
-    // Se o jogo estava aberto, recarrega a primeira pergunta
+    // Se o jogo estava aberto, recarrega a primeira pergunta e atualiza o texto lateral
     if (document.getElementById("jogo").style.display === "flex") {
         atualizarPainelDePontuacao();
+        atualizarTextoInfoQuiz(true);
         document.getElementById("qtdQuestoes").innerHTML = quantidadeDeQuestoes;
         preencherHTMLcomQuestaoAtual(0);
     }
@@ -656,6 +629,12 @@ function preencherHTMLcomQuestaoAtual(index) {
     numeroDaQuestaoAtual = index;
 
     document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = index + 1;
+
+    const spanNivel = document.getElementById("spanInfoNivel");
+    if (spanNivel) {
+        spanNivel.innerHTML = questaoAtual.dificuldade ? ` | Nível: ${questaoAtual.dificuldade}` : "";
+    }
+
     document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
     document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
     document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
@@ -686,7 +665,6 @@ function submeter() {
     const radioMarcado = document.querySelector('input[name="option"]:checked');
     const idOpcaoAtual = calcularIdOpcao(
         quizAtual,
-        dificuldadeAtual,
         numeroDaQuestaoAtual,
         radioMarcado.value
     );
@@ -768,15 +746,6 @@ function checarResposta() {
     document.getElementById("spanPercentual").innerHTML = percentual + "%";
 }
 
-/* ---------------------------------------------------------
-   QUIZ DE SANTOS: soma de pontos
-   Passo a passo:
-   1) descobre qual alternativa o usuário marcou (ex.: "alternativaB")
-   2) pega a letra final ("B") e monta a chave "santoB"
-   3) lê na pergunta atual qual santo é dono dessa alternativa
-   4) soma +1 no placar desse santo
-   5) guarda a resposta no histórico e destaca a escolha em cinza
-   --------------------------------------------------------- */
 function somarPontosDoSanto() {
     const escolhida = document.querySelector('input[name="option"]:checked');
     const letra = escolhida.value.slice(-1);                 // "A", "B", "C" ou "D"
@@ -815,22 +784,14 @@ function desmarcarRadioButtons() {
 function enviarResultadoQuiz() {
     const idUsuario = sessionStorage.getItem("ID_USUARIO");
 
-    // Passo 5.12: Se a sessão acabou em outra aba ou foi limpa, não dispara requisição inválida.
-    // O resultado visual na tela continua aparecendo normalmente para não frustrar o usuário.
     if (!idUsuario) {
         console.warn("Envio cancelado: ID_USUARIO não encontrado no sessionStorage.");
         return;
     }
 
-    // No quiz 3 (santos), traduz 'facil'/'medio'/'dificil' para 'curto'/'medio'/'longo'
-    const dificuldadeContrato = ehQuizDeSantos()
-        ? mapaNiveisSantos[dificuldadeAtual]
-        : dificuldadeAtual;
-
     const payload = {
         idUsuarioServer: Number(idUsuario),
         idQuizServer: quizAtual,
-        dificuldadeServer: dificuldadeContrato,
         opcoesServer: opcoesEscolhidasParaEnvio
     };
 
@@ -857,7 +818,6 @@ function enviarResultadoQuiz() {
             }
         })
         .catch(function (erro) {
-            // Servidor fora do ar ou falha de rede: não quebra a exibição do resultado na tela
             console.error("Falha de conexão ao tentar registrar o quiz:", erro);
         });
 }
@@ -902,9 +862,6 @@ function finalizarJogo() {
    QUIZ DE SANTOS: resultado final
    --------------------------------------------------------- */
 
-// Descobre o santo com mais pontos. Em caso de empate, vence o que
-// aparece primeiro em "santos" (São Tomás de Aquino, São Miguel Arcanjo...).
-// Com MOCAR_RESULTADO = true, devolve sempre "São Tomás de Aquino".
 function calcularSantoCompativel() {
     if (MOCAR_RESULTADO) return "São Tomás de Aquino";
 
@@ -920,21 +877,15 @@ function calcularSantoCompativel() {
     return vencedor;
 }
 
-// Monta um objeto simples com tudo que aconteceu no quiz.
-// Futuramente este objeto pode ser enviado (fetch/POST) a uma API.
 function montarResultadoParaEnvio(chaveSanto) {
     return {
         quiz: quizAtual,
-        tamanho: mapaNiveisSantos[dificuldadeAtual],   // curto | medio | longo
         respostas: respostasDoUsuario,
         pontos: pontosPorSanto,
         santoResultado: chaveSanto
     };
 }
 
-
-
-// Troca a tela do quiz pelo card do santo.
 function mostrarResultadoSanto() {
     const chaveSanto = calcularSantoCompativel();
     const santo = santos[chaveSanto];
@@ -960,6 +911,7 @@ function voltarAoMenuInicial() {
     document.getElementById("jogo").style.display = "none";
     document.getElementById("pontuacao").style.display = "none";
     document.getElementById("btnIniciarQuiz").style.display = "";
+    atualizarTextoInfoQuiz(false);
 
     reiniciarEstado();
 }

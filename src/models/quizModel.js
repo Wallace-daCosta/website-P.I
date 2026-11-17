@@ -15,14 +15,25 @@ function buscarOpcoes(listaDeIds) {
     return database.executar(instrucaoSql, [listaDeIds]);
 }
 
-// 3.2: Insere a tentativa sem enviar dtTentativa (usa CURRENT_TIMESTAMP do banco)
-function registrarTentativa(fkUsuario, fkQuiz, dificuldade) {
+// 6.3: Devolve a quantidade de perguntas ativas do quiz
+function contarPerguntasAtivas(fkQuiz) {
     var instrucaoSql = `
-        INSERT INTO tentativa (fkUsuario, fkQuiz, dificuldade)
-        VALUES (?, ?, ?);
+        SELECT COUNT(*) AS total
+        FROM pergunta
+        WHERE fkQuiz = ? AND ativa = 1;
     `;
 
-    return database.executar(instrucaoSql, [fkUsuario, fkQuiz, dificuldade]);
+    return database.executar(instrucaoSql, [fkQuiz]);
+}
+
+// 6.3: Insere a tentativa gravando apenas usuário e quiz
+function registrarTentativa(fkUsuario, fkQuiz) {
+    var instrucaoSql = `
+        INSERT INTO tentativa (fkUsuario, fkQuiz)
+        VALUES (?, ?);
+    `;
+
+    return database.executar(instrucaoSql, [fkUsuario, fkQuiz]);
 }
 
 // 3.3: Insere todas as respostas da tentativa de uma só vez via VALUES ?
@@ -45,9 +56,9 @@ function apagarTentativa(idTentativa) {
     return database.executar(instrucaoSql, [idTentativa]);
 }
 
-// 3.5: Exporta as 4 funções
 module.exports = {
     buscarOpcoes,
+    contarPerguntasAtivas,
     registrarTentativa,
     gravarRespostas,
     apagarTentativa

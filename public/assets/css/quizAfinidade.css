@@ -213,9 +213,18 @@ nav a.botao {
 
 /* ===== Coluna esquerda e direita ===== */
 .painelLateral,
-#painelConfig,
 #painelVisitante {
     display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+#painelConfig {
+        display: flex;
     flex-direction: column;
     gap: 16px;
     padding: 16px;
@@ -255,8 +264,7 @@ nav a.botao {
     margin-top: auto;
 }
 
-.contador,
-#cardConfig {
+.contador {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -431,42 +439,41 @@ nav a.botao {
 
 #msgFinal { padding: 6px 8px; border-radius: 6px; }
 
-/* ===== Coluna direita (Configurações) ===== */
-#seletorQuiz,
-#seletorDificuldade { gap: 8px; }
+/* ===== Coluna direita (Seleção de Quizzes) ===== */
+#seletorQuiz { gap: 8px; }
 
-#seletorDificuldade { margin-top: 40px; }
-
-.botaoQuiz,
-.botaoDificuldade {
+.botaoQuiz {
     padding: 10px 12px;
     font-size: 0.95rem;
     color: black;
     background: white;
-    cursor: pointer;
-}
-
-.botaoQuiz {
     border: 1px solid gray;
     border-radius: 6px;
+    cursor: pointer;
     transition: background .15s;
 }
 
-.botaoDificuldade {
-    padding: 14px 8px;
-    border: 2px solid #1F3A5F;
-    border-radius: 8px;
-    transition: background .15s;
-}
+.botaoQuiz:hover { background: whitesmoke; }
 
-.botaoQuiz:hover,
-.botaoDificuldade:hover { background: whitesmoke; }
-
-.botaoQuiz.ativo,
-.botaoDificuldade.ativo {
+.botaoQuiz.ativo {
     color: white;
     background: brown;
     border-color: brown;
+}
+
+#infoQuizSelecionado {
+    margin-top: auto;
+    padding: 12px;
+    background: whitesmoke;
+    border: 1px solid gray;
+    border-radius: 6px;
+    margin-bottom: 90px;
+}
+
+#textoInfoQuiz {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: #222;
 }
 
 /* ===== Card de resultado do Quiz 3 (Santos) ===== */
