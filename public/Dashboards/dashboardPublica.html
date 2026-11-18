@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="../assets/css/dashboardPublica.css">
-    <script src="../assets/js/main.js"></script>
     <link rel="icon" type="image/png" href="../assets/media/inicial/SagradoCoracaoJesus.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../assets/js/main.js" defer></script>
+    <script src="../assets/js/dashboard.js" defer></script>
 </head>
 
 <body>
 
     <nav class='navegacao'>
         <div class='barraNavegacao'>
-
             <a href='../website/index.html'>
                 <div>
                     <img class='logoSite' src="../assets/media/inicial/logoOstensorio.png">
@@ -47,7 +48,6 @@
     <!-- BLOCO 1: VISITANTE (sem sessão ativa) -->
     <div id="layoutVisitante">
         <div class="fundoQuiz">
-            <!-- COLUNA ESQUERDA -->
             <section class="painelLateral">
                 <a href="../website/index.html" class="logoHome" title="Voltar para a home">
                     <img class="logoQuiz" src="../assets/media/inicial/logoOstensorio.png"
@@ -59,16 +59,14 @@
                 </p>
             </section>
 
-            <!-- COLUNA CENTRAL -->
             <section class="areaPrincipal">
                 <h1 class='tituloVisitante'>Olá, visitante!</h1>
                 <h3 class='subtituloVisitante'>Seja bem-vindo à Dashboard!</h3>
                 <p class='textoVisitante'>
-                    Cadastre-se ou faça login em sua conta para poder ter acesso ao painél informativo!
+                    Cadastre-se ou faça login em sua conta para poder ter acesso ao painel informativo!
                 </p>
             </section>
 
-            <!-- COLUNA DIREITA -->
             <section id="painelVisitante">
                 <a class='btnCadastrarVisitante' href='../cadastro/cadastro.html'>Cadastrar-se</a>
                 <a class='btnLoginVisitante' href='../login/login.html'>Fazer Login</a>
@@ -77,35 +75,54 @@
     </div>
 
     <!-- BLOCO 2: USUÁRIO LOGADO -->
-
     <section id="layoutDashboard" class="dashboard" hidden>
         <div class="painel">
             <div class="container">
                 <h1 class='tituloDashboard'>Identificação com o Catolicismo</h1>
-                <br>
-                <h2 class='subtituloDashboard'>Um painel de informações</h2>
-                <br><br><br>
+                <p class='subtituloDashboard'>Olá, <span id="nomeUsuarioDash">peregrino(a)</span>! Confira seus resultados frente à comunidade</p>
+
+                <!-- Faixa de feedback (Carregando / Erro / Aviso de quiz pendente) -->
+                <div id="statusDashboard" class="status-dashboard" hidden></div>
 
                 <div class="linha-dashboard">
                     
+                    <!-- COLUNA 1: AFINIDADE COM WALLACE (QUIZ 1) -->
                     <div class="coluna">
-                        <button class="botaoAdicionar botao-esq">Formulário de Afinidade</button>
+                        <a href="../quiz/quizAfinidade.html" class="botaoAdicionar">Jogar Quiz de Afinidade</a>
                         <div class="cardKPI">
-                            <h2>NIVEL DE AFINIDADE MÉDIA</h2>
-                            <h1>75%</h1>
-                            <p>Pessoas acima dessa média: 12</p>
-                         </div>
-                        <div class="cardGrafico"></div>
+                            <h2>AFINIDADE COM WALLACE</h2>
+                            <h1 id="kpi1Valor">--</h1>
+                            <p id="kpi1Ancora">Média da comunidade: --</p>
+                        </div>
+                        <div class="cardGrafico">
+                            <canvas id="canvasGrafico1"></canvas>
+                        </div>
                     </div>
 
+                    <!-- COLUNA 2: CONHECIMENTO CATÓLICO (QUIZ 2) -->
                     <div class="coluna">
-                        <button class="botaoAdicionar botao-dir">Formulário de Devoção</button>
+                        <a href="../quiz/quizAfinidade.html" class="botaoAdicionar">Jogar Quiz Católico</a>
                         <div class="cardKPI">
-                            <h2>SANTO MAIS COMUM</h2>
-                            <h1>Santo Tomás de Aquino</h1>
-                            <p>Total de votos e nomeações: 12</p>
+                            <h2>CONHECIMENTO DA FÉ</h2>
+                            <h1 id="kpi2Valor">--</h1>
+                            <p id="kpi2Ancora">Média da comunidade: --</p>
                         </div>
-                        <div class="cardGrafico"></div>
+                        <div class="cardGrafico">
+                            <canvas id="canvasGrafico2"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- COLUNA 3: SANTO DE AFINIDADE (QUIZ 3) -->
+                    <div class="coluna">
+                        <a href="../quiz/quizAfinidade.html" class="botaoAdicionar">Jogar Quiz dos Santos</a>
+                        <div class="cardKPI">
+                            <h2>SEU SANTO DE AFINIDADE</h2>
+                            <h1 id="kpi3Valor">--</h1>
+                            <p id="kpi3Ancora">Mais popular: --</p>
+                        </div>
+                        <div class="cardGrafico">
+                            <canvas id="canvasGrafico3"></canvas>
+                        </div>
                     </div>
 
                 </div>
