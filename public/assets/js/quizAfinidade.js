@@ -407,25 +407,36 @@ quizzes[3] = bancoSantos;
 const santos = {
     "São Tomás de Aquino": {
         nome: "São Tomás de Aquino",
-        imagem: "../assets/media/santos/São Tomás de Aquino.png",
-        texto: "Texto de exemplo explicando por que o São Tomás de Aquino é o mais compatível com você. Edite aqui."
+        texto: "Você busca compreender o mundo com profundidade, lógica e equilíbrio. Assim como São Tomás, você valoriza a verdade, o estudo e a busca constante por respostas sólidas."
     },
     "São Miguel Arcanjo": {
         nome: "São Miguel Arcanjo",
-        imagem: "../assets/media/santos/São Miguel Arcanjo.png",
-        texto: "Texto de exemplo explicando por que o São Miguel Arcanjo é o mais compatível com você. Edite aqui."
+        texto: "Você tem um forte senso de justiça, lealdade e proteção. Assim como São Miguel, não foge das batalhas difíceis e está sempre pronto para defender o que é certo."
     },
     "Nossa Senhora": {
         nome: "Nossa Senhora",
-        imagem: "../assets/media/santos/Nossa Senhora.png",
-        texto: "Texto de exemplo explicando por que o Nossa Senhora é o mais compatível com você. Edite aqui."
+        texto: "Sua força está na serenidade, na escuta atenta e no cuidado com os outros. Assim como Maria, você enfrenta os desafios com humildade, paciência e um coração sempre disposto a ajudar."
     },
     "São João Paulo II": {
         nome: "São João Paulo II",
-        imagem: "../assets/media/santos/São João Paulo II.png",
-        texto: "Texto de exemplo explicando por que o São João Paulo II é o mais compatível com você. Edite aqui."
+        texto: "Você tem um espírito acolhedor, corajoso e cheio de esperança. Assim como São João Paulo II, inspira as pessoas ao seu redor pela empatia, diálogo e entusiasmo pela vida."
     }
 };
+
+function htmlImagemSanto(chaveSanto) {
+    switch (chaveSanto) {
+        case "São Tomás de Aquino":
+            return `<img id="imgSanto" src="../assets/media/quiz/SaoTomasDeAquino.png" alt="São Tomás de Aquino">`;
+        case "São Miguel Arcanjo":
+            return `<img id="imgSanto" src="../assets/media/quiz/São Miguel Arcanjo.png" alt="São Miguel Arcanjo">`;
+        case "Nossa Senhora":
+            return `<img id="imgSanto" src="../assets/media/quiz/NossaSenhora.jpg" alt="Nossa Senhora">`;
+        case "São João Paulo II":
+            return `<img id="imgSanto" src="../assets/media/quiz/papaSaoJoaoPauloII.png" alt="São João Paulo II">`;
+        default:
+            return "";
+    }
+}
 
 const MOCAR_RESULTADO = false;
 
@@ -893,16 +904,17 @@ function mostrarResultadoSanto() {
     console.log("Pontos por santo:", pontosPorSanto);
     console.log("Resultado (pronto p/ API):", montarResultadoParaEnvio(chaveSanto));
 
-    // Preenche o card
-    const img = document.getElementById("imgSanto");
-    img.src = santo.imagem;
-    img.alt = santo.nome;
-    document.getElementById("tituloSanto").innerHTML = santo.nome;
-    document.getElementById("textoSanto").innerHTML = santo.texto;
+    const card = document.getElementById("cardResultado");
 
-    // Esconde o jogo e exibe o card
+    card.innerHTML = `
+        ${htmlImagemSanto(chaveSanto)}
+        <h2 id="tituloSanto">${santo.nome}</h2>
+        <p id="textoSanto">${santo.texto}</p>
+        <button id="btnVoltarMenu" onclick="voltarAoMenuInicial()">Voltar ao menu inicial</button>
+    `;
+
     document.getElementById("jogo").style.display = "none";
-    document.getElementById("cardResultado").style.display = "flex";
+    card.style.display = "flex";
 }
 
 // Botão "Voltar ao menu inicial" do card: volta à tela com o botão INICIAR QUIZ.
@@ -915,3 +927,35 @@ function voltarAoMenuInicial() {
 
     reiniciarEstado();
 }
+
+function atualizarMenuSessao() {
+    const idUsuario = sessionStorage.getItem("ID_USUARIO") || sessionStorage.getItem("idUsuario");
+    const nomeUsuario = sessionStorage.getItem("NOME_USUARIO") || sessionStorage.getItem("primeiroNome");
+    const menu = document.getElementById("menuEntrar");
+
+    if (!menu || !idUsuario) return;
+
+    const titulo = menu.querySelector(".menuTitulo");
+    const texto = menu.querySelector(".menuTexto");
+    const botoes = menu.querySelector(".menuBotoes");
+
+    if (titulo) {
+        titulo.textContent = nomeUsuario ? `Olá, ${nomeUsuario}!` : "Bem-vindo de volta!";
+    }
+    if (texto) {
+        texto.textContent = "Você está conectado à comunidade.";
+    }
+    if (botoes) {
+        botoes.innerHTML = `
+            <a class="botaoCadastro" href="../Dashboards/dashboardPublica.html">Meu Painel</a>
+            <button type="button" class="botaoLogin" onclick="sair()">Sair</button>
+        `;
+    }
+}
+
+function sair() {
+    sessionStorage.clear();
+    window.location.href = "../website/index.html";
+}
+
+window.addEventListener("DOMContentLoaded", atualizarMenuSessao);
