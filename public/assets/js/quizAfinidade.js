@@ -60,7 +60,7 @@ const quizzes = {
         },
         {
             dificuldade: "fácil",
-            pergunta: "Em que ano Wallace iniciou sua caminha de conversão?",
+            pergunta: "Em que ano Wallace iniciou seu caminho de conversão?",
             alternativaA: "2010",
             alternativaB: "2020",
             alternativaC: "2025",
@@ -193,7 +193,7 @@ const quizzes = {
             alternativaA: "Judas Iscariotes",
             alternativaB: "Judas Tadeu",
             alternativaC: "Saulo Iscariotes",
-            alternativaD: "Bento de Núrsia",
+            alternativaD: "Pôncio Pilatos",
             alternativaCorreta: "alternativaA"
         },
         {
