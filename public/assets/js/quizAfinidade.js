@@ -426,18 +426,17 @@ const santos = {
 function htmlImagemSanto(chaveSanto) {
     switch (chaveSanto) {
         case "São Tomás de Aquino":
-            return `<img id="imgSanto" src="../assets/media/quiz/SaoTomasDeAquino.png" alt="São Tomás de Aquino">`;
+            return `<img id="imgSanto" src="../assets/media/quiz/SaoTomasAquino.jpg" alt="São Tomás de Aquino">`;
         case "São Miguel Arcanjo":
-            return `<img id="imgSanto" src="../assets/media/quiz/São Miguel Arcanjo.png" alt="São Miguel Arcanjo">`;
+            return `<img id="imgSanto" src="../assets/media/quiz/SaoMiguelArcanjo.jpg" alt="São Miguel Arcanjo">`;
         case "Nossa Senhora":
             return `<img id="imgSanto" src="../assets/media/quiz/NossaSenhora.jpg" alt="Nossa Senhora">`;
         case "São João Paulo II":
-            return `<img id="imgSanto" src="../assets/media/quiz/papaSaoJoaoPauloII.png" alt="São João Paulo II">`;
+            return `<img id="imgSanto" src="../assets/media/quiz/papaSaoJoaoPauloII.jpg" alt="São João Paulo II">`;
         default:
             return "";
     }
 }
-
 const MOCAR_RESULTADO = false;
 
 /* =========================================================
